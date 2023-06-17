@@ -1,0 +1,344 @@
+.g{
+    width: 100%;
+    /* border: 2px solid saddlebrown; */
+    align-content: center;
+    position: relative;
+    z-index: 1;
+    /* height:500px;
+    background-image: url("../img/koveropm.png"); */
+}
+.g img{
+    width: 100%;
+}
+
+.ini-isi{
+    width: 100%;
+    margin: 20px 0 20px 0;
+    /* border: 2px solid seagreen; */
+}
+
+.d-kiri{
+    float: left;
+    margin: 0 0 0 20px;
+    /* border: 2px solid chartreuse; */
+    width: 71.5%;
+}
+
+.a{
+    /* border: 2px solid red; */
+    width: 100%;
+    margin: -150px 0 0 0;
+    background-color: var(--theme-color);
+    box-shadow: 0 0 5px grey;
+}
+
+.a1{
+    position: relative;
+    z-index: 2;
+    /* border: 2px solid black; */
+    width: 280px;
+    display: inline-block;
+    background-color: var(--theme-color);
+}
+
+.aa1{
+    width: 100%;
+}
+
+.aa1 img{
+    padding: 15px;
+    width: 100%;
+}
+
+.a2{
+    position: relative;
+    bottom: 50px;
+    width: 200px;
+    /* border: 2px solid blueviolet; */
+    display: inline-block;
+
+}
+
+.dul{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.par{
+    margin-top: 10px;
+    margin-bottom: 35px
+}
+
+.a2 a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    display: block;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #2196F3;
+  }
+
+.b{
+    /* border: 1px solid #fff; */
+    background-color: var(--theme-color);
+    width: 100%;
+    margin: 30px 0 0 0px;
+    box-shadow: 0 0 5px grey;
+}
+
+.isi-b{
+    padding: 10px;
+}
+
+.b h3{
+    margin: 20px 0 0 20px
+}
+
+.b ul{
+    margin: 20px;
+}
+
+.btn-banyak a{
+    text-decoration: none;
+    font-weight: bold;
+    color: #2095F2;
+  }
+  
+  .btn-banyak{
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .btn-banyak:hover{
+    background-color: var(--hovv);
+    cursor: pointer;
+  }
+  .btn-banyak i{
+    color: #2095F2;
+  }
+  
+.c{
+    padding: 10px;
+    background-color: var(--theme-color);
+    width: 100%;
+    margin: 30px 0 0 0;
+    box-shadow: 0 0 5px grey;
+}
+
+.c h3{
+    margin: 10px
+}
+
+.cc{
+    margin: 0 0 3px 0;
+}
+
+.cc p{
+    margin: 5px;
+    display: inline
+}
+
+.cc a{
+    text-decoration: none;
+    color: black;
+}
+
+.cc a:hover{
+    color: #2095F2;
+}
+
+.d-kanan{
+    box-sizing: border-box;
+    padding: 10px;
+    width: 24.5%;
+    float: right;
+}
+
+.k{
+    margin-top: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 5px;
+    background-color: var(--theme-color);
+    box-shadow: 0 0 5px grey;
+}
+
+.atas{
+    width: 100%;
+    margin: 10px 0 10px 0;
+  }
+  
+  .atas-kiri{
+    display: inline-block;
+    text-align: left;
+  }
+  
+  .atas-kanan{
+    display: inline-block;
+    float: right;
+  }
+  
+  .atas-kanan a{
+    text-decoration: none;
+    font-weight: 600;
+    color: #595959;
+  }
+  
+  .atas-kanan a:hover{
+    color: #2095F2;
+  }
+
+  .jud{
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+.kk{
+    width: 100%;
+}
+
+.kk-isi{
+    box-sizing: border-box;
+    padding: 10px;
+    width: 100%;
+}
+
+.kk-isi a{
+    text-decoration: none;
+    width: 100%;
+    display: flex;
+}
+
+.lol{
+    margin: 10px;
+}
+
+.l{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: var(--theme-color);
+    box-shadow: 0 0 5px grey;
+}
+
+.lo{
+    box-sizing: border-box;
+    padding: 5px;
+}
+
+.lo a{
+    display: flex;
+    text-decoration: none;
+}
+
+/* JUDUL , PENGARANG , EPISODE */
+
+.judul{
+    color: var(--judul);
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .episode{
+    color: var(--episode);
+    font-size: 16px;
+  }
+
+  .pengarang{
+    color: var(--pengarang);
+    font-size: 16px;
+  }
+
+.kk-kiri{
+    margin: 10px;
+    display: inline-block;
+    text-align: left;
+}
+
+.kk-kanan{
+    margin: 10px;
+    display: inline-block;
+    float: right;
+}
+
+.ll-kiri{
+    margin: 10px;
+    display: inline-block;
+    text-align: left;
+}
+
+.ll-kanan{
+    margin: 10px;
+    display: inline-block;
+    float: right;
+}
+
+@media screen and (max-width:1100px){
+    .atas-kiri > p{
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .atas-kanan > a{
+        font-size: 14px;
+        font-weight: bold;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .ini-isi{
+        margin-top: 10%;
+    }
+
+    .d-kiri{
+        padding: 10px;
+    }
+
+    .a1{
+        margin: 60px 5px 5px 5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40%;
+    }
+
+    .aa1 img {
+        padding: 5px;
+    }
+    .a2{
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 60px;
+        display: block;
+        width: 30%;
+    }
+
+    .dul p{
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    
+    .par {
+        font-size: 14px;
+    }
+    
+    .d-kiri{
+        margin: 0;
+        width: 100%;
+    }
+
+    .d-kanan{
+        margin: 0;
+        width: 100%;
+    }
+
+    .jud{
+        font-size: 16px;
+        font-weight: 700;
+    }
+    
+}

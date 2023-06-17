@@ -1,0 +1,34 @@
+<nav class="topnav" id="myTopnav">
+    <ul>
+        <div class="kiri">
+            <li>
+                <a href="javascript:void(0);" class="icon" onclick="bar()"> 
+                    <i class="fa fa-bars"></i>
+                </a>
+            </li>
+            <li><a href="/web/unauth/index.html" ><img class="logo" src="/img/BACA%20KOMIK%20ICON.png" alt=""></a></li>
+            <li><a class="respon" href="/web/unauth/index.html" class="active">BERANDA</a> </li>
+            <li><a class="respon"href="/web/unauth/semuaKomik.html">SEMUA KOMIK</a> </li>
+            <li><a class="respon" href="/web/unauth/terbaru.html">TERBARU</a></li>
+        </div>
+        <div class="kanan">
+                <li>
+                    <a href="javascript:void(0);" class="icon" onclick="find()">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li> <input class="respon" type="text" name="search" id="search" placeholder="Cari"> </li>
+                <ul class="list-group" id="result"></ul>
+                <a  href="/web/unauth/login.html">Masuk</a>
+        </div>
+        <div class="clear"></div>
+        <div id="bar" style="display:none;"  class="bar">
+            <a class="respon" href="/web/unauth/index.html" class="active">BERANDA</a>
+            <a class="respon"href="/web/unauth/semuaKomik.html">SEMUA KOMIK</a>
+            <a class="respon" href="/web/unauth/terbaru.html">TERBARU</a>
+        </div>
+        <div id="find" style="display:none"  class="bar">
+            <input class="respon" type="text" placeholder="Cari">
+        </div>
+    </ul>
+</nav>

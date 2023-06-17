@@ -1,0 +1,17 @@
+.konten {
+    background-color: var(--theme-color);
+}
+
+.konten h1{
+  text-align: center;
+}
+.konten p{
+  margin: 10px 0;
+  text-align: justify;
+}
+.konten>p{
+     text-align: justify;
+  }
+.konten>ol{
+  text-align: justify;
+}

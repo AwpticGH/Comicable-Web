@@ -1,0 +1,78 @@
+.konten {
+    background-color: var(--theme-color);
+}
+
+.konten h3{
+  box-sizing: border-box;
+  padding: 15px;
+}
+
+.atas{
+  height: 53px;
+  background-color: var(--atas);
+  width: 100%;
+  text-align: right;
+}
+
+.atas p{
+  display: inline;
+  margin: 10px 10px;
+}
+
+.atas select{
+  margin: 20px;
+}
+
+.isi{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.cover1{
+  padding: 10px;
+  margin: 10px 10px 10px 10px;
+  display: inline-block;
+}
+
+.cover1:hover{
+  background-color: var(--hovv);
+}
+
+.cover1 a{
+  text-decoration: none;
+}
+
+/* JUDUL , EPISODE */
+
+.judul{
+  color: var(--judul);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.episode{
+  color: var(--episode);
+  font-size: 16px;
+}
+
+.btn-banyak{
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+  .btn-banyak a{
+    text-decoration: none;
+    font-weight: bold;
+    color: #2095F2;
+  }
+
+  .btn-banyak:hover{
+    background-color: var(--hovv);
+    cursor: pointer;
+  }
+
+  .btn-banyak i{
+    color: #2095F2;
+  }

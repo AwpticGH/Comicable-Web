@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="/public/css/masuk_daftar.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>BACA KOMIK</title>
+    <!--  Middleware  -->
+    <script src="/public/js/middleware/unauth.js"></script>
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/public/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/public/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/public/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/public/img/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/public/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+    <!-- navbar -->
+    <nav class="topnav" id="myTopnav">
+        <ul>
+            <div class="kiri">
+                <li>
+                    <a href="javascript:void(0);" class="icon" onclick="bar()">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="/web/unauth/index.html"><img class="logo" src="/public/img/BACA KOMIK ICON.png" alt=""></a>
+                </li>
+                <li><a class="respon" href="/web/unauth/index.html" class="active">BERANDA</a> </li>
+                <li><a class="respon" href="/web/unauth/semuaKomik.html">SEMUA KOMIK</a> </li>
+                <li><a class="respon" href="/web/unauth/terbaru.html">TERBARU</a></li>
+            </div>
+            <div class="kanan">
+                <li>
+                    <a href="javascript:void(0);" class="icon" onclick="find()">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li> <input class="respon" type="text" name="search" id="search" placeholder="Cari"> </li>
+                <ul class="list-group" id="result"></ul>
+                <a href="/web/unauth/login.html">Masuk</a>
+            </div>
+            <div class="clear"></div>
+            <div id="bar" style="display:none;" class="bar">
+                <a class="respon" href="/web/unauth/index.html" class="active">BERANDA</a>
+                <a class="respon" href="/web/unauth/semuaKomik.html">SEMUA KOMIK</a>
+                <a class="respon" href="/web/unauth/terbaru.html">TERBARU</a>
+            </div>
+            <div id="find" style="display:none" class="bar">
+                <input class="respon" type="text" placeholder="Cari">
+            </div>
+        </ul>
+    </nav>
+
+    <!-- conten -->
+    <div class="konten">
+        <form id="formEmail">
+            <h1>DAFTAR</h1> <br>
+            <input onkeyup="validasi();" type="email" placeholder="Masukkan email anda..." id="myemail" name="email"><br>
+            <p style="display:none;color:red;" id="email">*masukan email</p>
+            <button id="submit" onclick="lanjut();">Lanjutkan</button>
+        </form>
+    </div>
+
+    <!-- footer -->
+    <footer>
+        <div>
+            <a href="/web/unauth/tentangKami.html">Tentang Kami</a>
+            <a href="/web/unauth/ketentuanLayanan.html">Ketentuan Layanan</a>
+            <a href="/web/unauth/dukunganPelanggan.html">Dukungan Pelanggan</a>
+        </div>
+        <div>
+            <p>© 2023</p>
+        </div>
+    </footer>
+
+    <div id="loading">
+        <p></p>
+    </div>
+    <script>
+        document.getElementById("formEmail").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let email = document.getElementById("mymail").value;
+            sessionStorage.setItem("email", email);
+        })
+    </script>
+
+    <script src="/public/js/jquery/jquery-3.4.1.min.js"></script>
+    <script src="/public/js/loading.js"></script>
+    <script src="/public/js/validsai_daftar1.js"></script>
+    <script src="/public/js/navbar.js"></script>
+</body>
+
+</html>

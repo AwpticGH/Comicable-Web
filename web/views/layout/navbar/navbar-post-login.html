@@ -1,0 +1,140 @@
+    <nav class="topnav" id="myTopnav">
+        <ul>
+            <div class="kiri">
+                <li><a href="javascript:void(0);" class="icon" onclick="bar()"> <i class="fa fa-bars"></i></a></li>
+                <li><a href="/web/auth/index.html" ><img class="logo" src="/public/img/BACA%20KOMIK%20ICON.png" alt=""></a></li>
+                <li><a class="respon" href="/web/auth/index.html" class="active">BERANDA</a> </li>
+                <li><a class="respon"href="/web/auth/semuaKomik.html">SEMUA KOMIK</a> </li>
+                <li><a class="respon" href="/web/auth/terbaru.html">TERBARU</a></li>
+            </div>
+            <div class="kanan">
+                <li><a href="javascript:void(0);" class="icon" onclick="find()"> <i class="fa fa-search" aria-hidden="true"></i> </a></li>
+                <i  style="margin-top:10px; color:#2095F2;" class="fa fa-user-circle fa-3x" aria-hidden="true"></i>
+                <i class="fa fa-caret-down" aria-hidden="true" style="color:#2095F2;" ></i>
+                <li> <input class="respon" type="text" placeholder="   Cari"> </li>
+                <ul id="dropdown"style="display:none">
+                    <li ><a href="#" class="biru size18">akun@gmail.com</a></li> <br>
+                    <li onclick="verif();"><a class="hijau size14" href="javascript:void(0);">Belum terverifikasi</a></li> <br>
+                    <li class="garis" onclick="uang();"><a class="size14"  href="javascript:void(0);">Rp. 1,000,000 <i class="fa fa-plus-square" aria-hidden="true"></i></a></li><br>
+                    <li><a href="" style="color:black; cursor:default;">komik</a></li> <br>
+                    <li><a class="abu"href="/web/auth/komikSaya.html">komik saya</a></li> <br>
+                    <li><a class="abu"href="/web/auth/komikTerbeli.html">koleksi terbeli</a></li> <br>
+                    <li class="garis" onclick="tambahKomik();"><a href="javascript:void(0);" class="abu"  >tambah komik</a></li> <br>
+                    <li class="garis" onclick="profil();"><a href="javascript:void(0);">Edit Profil</a></li> <br>
+                    <li  onclick="logout()"><a class="merah"href="javascript:void(0);">Logout</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+            <div id="bar" style="display:none;"  class="bar">
+                <a class="respon" href="/web/auth/index.html" class="active">BERANDA</a>
+                <a class="respon"href="/web/auth/semuaKomik.html">SEMUA KOMIK</a>
+                <a class="respon" href="/web/auth/terbaru.html">TERBARU</a>
+            </div>
+            <div id="find" style="display:none;"  class="bar">
+                <input class="respon" type="text" placeholder="   Cari">
+            </div>
+        </ul>
+    </nav>
+
+    <!-- modal box -->
+    <div class="content" >
+        <div class="header">
+            <!-- <p>Data Tersimpan</p> -->
+            <label for="click" class="fas fa-times" onclick="closeverif();"></label>
+        </div>
+        <label for="click" class="fas fa-check" ></label>
+        <p>selamat! Komik berhasil ditambahkan dan telah tersimpan.</p>
+        <div class="line"></div>
+        <label for="click" class="close-btn" onclick="closeverif();">Close</label>
+    </div>
+
+    <div class="content2" >
+        <div class="header2">
+            <!-- <p>Data Tersimpan</p> -->
+            <label for="click" class="fas fa-times" onclick="closeverif();"></label>
+        </div>
+        <label id="kedua" for="click" class="fas fa-times" ></label>
+        <p> input masih ada yang kosong nih, isi dulu ya kak.</p>
+        <div class="line"></div>
+        <label for="click" class="close-btn2" onclick="closeverif();">Close</label>
+    </div>
+
+    <!-- untuk tambah komik -->
+    <div class="bg-modal" id="tambah" style="display:none;">
+        <div class="modal-konten">
+            <div class="tutup" onclick="tutup();">+</div>
+            <h1>Tambah komik</h1>
+            <form class="" action="/web/auth/index.html" method="post">
+                <input type="text" name="" id="" placeholder="judul komik"><br>
+                <textarea name="message" style="width:300px; height:100px;" placeholder="deskripsi"></textarea><br>
+                <label for="file" style="padding-top:10px;">gambar cover</label> <br>
+                <input class="fileSize1" type="file" name="file" accept="image/*" onchange="readURL_tambahkomik(this);"> <br>
+                <img id="blah1" src="http://placehold.it/180" alt="your image" /> <br>
+                <p id="size1">Ukuran file : </p>
+            </form>
+            <button type="button" name="button" onclick="verifikasi();">verifikasi</button>
+        </div>
+    </div>
+
+    <!-- untuk verifikasi -->
+    <div class="bg-modal" id="verif" style="display:none;">
+        <div class="modal-konten">
+            <div class="tutup" onclick="tutup();">+</div>
+            <h1>verifikasi identitas kreator</h1>
+            <form class="" action="/web/auth/index.html" method="post">
+                <input type="text" name="" id="" placeholder="nama lengkap"><br>
+                <input type="text" name="" id="" placeholder="no. Telepon/HP"><br>
+                <input type="text" name="" id="" placeholder="alamat"><br>
+                <input type="date" name="" id=""><br>
+                <label for="file" style="padding-top:10px;">foto selfie dengan ktp</label> <br>
+                <input class="fileSize2" type="file" name="file" accept="image/*" onchange="readURL_verifakun(this);"> <br>
+                <img id="blah2" src="http://placehold.it/180" alt="your image" /> <br>
+                <p id="size2">Ukuran file : </p>
+            </form>
+            <button type="button" name="button" onclick="verifikasi();">verifikasi</button>
+        </div>
+    </div>
+    <!-- untuk tambah uang -->
+    <div class="bg-modal" id="uang" style="display:none;">
+        <div class="modal-konten">
+            <div class="tutup" onclick="tutup();">+</div>
+            <h1>Topup Uang</h1>
+            <form class="" action="/web/auth/index.html" method="post">
+                <input type="text" name="" id="" placeholder="nominal uang dalam Rp."><br>
+                <label for="bayar">bayar dengan metode : </label><br>
+                <div>
+                    <input type="radio" name="bayar" value="transfer rekening"> transfer rekening<br>
+                    <input type="radio" name="bayar" value="indoktober"> indoktober<br>
+                    <input type="radio" name="bayar" value="alfaoktober"> alfaoktober<br>
+                </div>
+            </form>
+            <button type="button" name="button" onclick="verifikasi();">TAMBAH</button>
+        </div>
+    </div>
+    <!-- untuk edit profil -->
+    <div class="bg-modal" id="profil" style="display:none;">
+        <div class="modal-konten">
+            <div class="tutup" onclick="tutup();">+</div>
+            <h1>Edit Profil</h1>
+            <form class="" action="/web/auth/index.html" method="post">
+                <input type="text" name="" id="" placeholder="nama lengkap"><br>
+                <input type="text" name="" id="" placeholder="no. Telepon/HP"><br>
+                <input type="text" name="" id="" placeholder="alamat"><br>
+                <input type="date" name="" id=""><br>
+                <label for="file" style="padding-top:10px;">foto selfie dengan ktp</label> <br>
+                <input class="fileSize3" type="file" name="file" accept="image/*" onchange="readURL_editakun(this);"> <br>
+                <img id="blah3" src="http://placehold.it/180" alt="your image" /> <br>
+                <p id="size3">Ukuran file : </p>
+            </form>
+            <button type="button" name="button" onclick="verifikasi();">verifikasi</button>
+        </div>
+    </div>
+    <!-- untuk peringatan keluar akun -->
+    <div class="bg-modal" id="keluarAkun" style="display:none;">
+        <div class="modal-konten" style="max-height: 150px;">
+            <h1>yakin ingin keluar?</h1>
+            <br>
+            <button type="button" name="button" onclick="tutup();">tidak</button>
+            <button type="button" name="button" onclick="signout();">ya</button>
+        </div>
+    </div>
