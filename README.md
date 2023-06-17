@@ -39,22 +39,23 @@
 
 ## To Do
 ### Frontend
-- Restructure folder (rafi)
-- Konversi file ke ejs (rafi/praba)
-- Bikin layout components dan main layout (rafi/praba)
+- [] Restructure folder (rafi)
+- [] Konversi file ke ejs (rafi/praba)
+- [] Bikin layout components dan main layout (rafi/praba)
+- [] Remove unnecessary features, see tables in database section for reference (rafi)
 
 ### Backend
-- Nyari restful api (rafi)
-- Nyari library untuk rest api (rafi)
-- Implementasi api nya (rafi)
-- Bikin config (praba)
-- Bikin controller (praba)
-- Bikin model (praba)
-- Bikin middleware (rafi)
-- Bikin router (rafi)
-- Bikin dictionary/WebVariable (rafi)
-- Bikin dictionary/DatabaseReference (rafi)
-- Bikin flag (rafi)
+- [] Nyari restful api (rafi)
+- [] Nyari library untuk rest api (rafi)
+- [] Implementasi api nya (rafi)
+- [] Bikin config (praba)
+- [] Bikin controller (praba)
+- [] Bikin model (praba)
+- [] Bikin middleware (rafi)
+- [] Bikin router (rafi)
+- [] Bikin dictionary/WebVariable (rafi)
+- [] Bikin dictionary/DatabaseReference (rafi)
+- [] Bikin flag (rafi)
 
 ## Penjelasan
 ### config
