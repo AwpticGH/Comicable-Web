@@ -47,9 +47,9 @@
 - Nyari api (rest)
 - Nyari library untuk rest api
 - Implementasi api nya
-- Bikin config
-- Bikin controller
-- Bikin model
+- Bikin config (praba)
+- Bikin controller (praba)
+- Bikin model (praba)
 - Bikin middleware
 - Bikin router
 - Bikin dictionary/WebVariable
@@ -64,7 +64,7 @@ Konfigurasi untuk koneksi ke firebase dan menginisialisasi firebase app dengan f
 Mengolah data dari web/firebase ke firebase/web.
 
 ### model
-Bentuk model dari database
+Bentuk model dari table yang ada di database (atribut/properti table).
 
 ### middleware
 Penghubung client mengakses suatu halaman
