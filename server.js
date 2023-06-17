@@ -1,4 +1,4 @@
-const WebRoute = require("./src/dictionary/WebRoute");
+const WebRoutes = require("./src/dictionary/web/Routes");
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
@@ -19,10 +19,10 @@ app.use(connectLiveReload());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "/web/public")));
 
-app.get(WebRoute.HOME, (request, response) => {
+app.get(WebRoutes.HOME, (request, response) => {
     response.sendFile(path.join(__dirname, "/web/views/index.html"));
 });
-app.get(WebRoute.ABOUT, (request, response) => {
+app.get(WebRoutes.ABOUT, (request, response) => {
     response.sendFile(path.join(__dirname, "/web/views/information/dukunganPelanggan.html"));
 })
 

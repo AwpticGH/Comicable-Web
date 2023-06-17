@@ -54,7 +54,7 @@
 - [] Bikin middleware (rafi)
 - [] Bikin router (rafi)
 - [] Bikin dictionary/WebVariable (rafi)
-- [] Bikin dictionary/DatabaseReference (rafi)
+- [] Bikin dictionary/References (rafi)
 - [] Bikin flag (rafi)
 
 ## Penjelasan
@@ -80,7 +80,7 @@ class WebVariable { \
 }\
 Maka name dan id nya "my-email".
 
-### DatabaseReference
+### References
 Kamus untuk path/route/references di Firebase Realtime Database.
 
 ### flag
