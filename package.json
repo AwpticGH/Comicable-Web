@@ -18,7 +18,8 @@
   "devDependencies": {
     "connect-livereload": "^0.6.1",
     "livereload": "^0.9.3",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "morgan": "^1.10.0"
   },
   "nodemonConfig": {
     "watch": [
@@ -27,6 +28,6 @@
       "*.json",
       "*.html"
     ],
-    "ext": "json, html, css, js"
+    "ext": "json, html, css, js, ejs"
   }
 }

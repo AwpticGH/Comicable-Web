@@ -1,13 +1,8 @@
-<%
-const AuthFlag = require("/src/flag/AuthFlag");
-const Routes = require("/src/dictionary/web/Routes");
-const SessionVariables = require("/src/dictionary/web/SessionVariables");
-%>
 <nav class="topnav" id="myTopnav">
     <ul>
         <div class="kiri">
             <li><a href="javascript:void(0);" class="icon" onclick="bar()"> <i class="fa fa-bars"></i></a></li>
-            <li><a href="<%= Routes.HOME %>" ><img class="logo" src="/web/public/img/BACA%20KOMIK%20ICON.png" alt=""></a></li>
+            <li><a href="<%= Routes.HOME %>" ><img class="logo" src="img/BACA%20KOMIK%20ICON.png" alt=""></a></li>
             <li><a class="respon" href="<%= Routes.HOME %>" class="active">BERANDA</a> </li>
             <li><a class="respon"href="<%= Routes.COMICS_ALL %>">SEMUA KOMIK</a> </li>
             <li><a class="respon" href="<%= Routes.COMICS_NEWEST %>">TERBARU</a></li>

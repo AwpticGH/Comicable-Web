@@ -1,8 +1,10 @@
-const SessionVariables = require("/src/dictionary/web/SessionVariables");
+const BASE_PATH = require("../../BasePath")
+const SessionUtility = require(`${BASE_PATH}/src/utility/web/SessionUtility`);
+const SessionVariables = require(`${BASE_PATH}/src/dictionary/web/SessionVariables`);
 
 class AuthFlag {
     static isAuthenticated() {
-        return sessionStorage.hasOwnProperty(SessionVariables.AUTH_MODEL);
+        return SessionUtility.getSessionStorage().hasOwnProperty(SessionVariables.AUTH_MODEL);
     }
 }
 
