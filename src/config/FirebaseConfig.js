@@ -1,9 +1,7 @@
-import initializeApp from "firebase/app";
-const BASE_PATH = require("../../BasePath");
-const FirebaseFlag = require(`${BASE_PATH}/src/flag/FirebaseFlag`);
+const firebaseApp = require("firebase/app");
 
 class FirebaseConfig {
-    #firebaseConfig = {
+    static #firebaseConfig = {
         apiKey: "AIzaSyAEtfkCxN52iRwCV2k6xFeX2FgBZUhqfZ0",
         authDomain: "comicable-bba44.firebaseapp.com",
         databaseURL: "https://comicable-bba44-default-rtdb.firebaseio.com",
@@ -16,8 +14,12 @@ class FirebaseConfig {
 
     static init() {
         // Initialize Firebase
-        if (!FirebaseFlag.isInitialized()) {
-            initializeApp(this.#firebaseConfig);
-        }
+        firebaseApp.initializeApp(this.#firebaseConfig);
+    }
+
+    static getFirebase() {
+        return firebaseApp;
     }
 }
+
+module.exports = FirebaseConfig;

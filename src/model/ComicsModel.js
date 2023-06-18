@@ -10,14 +10,6 @@ class ComicsModel extends BaseModel {
         super();
     }
 
-    constructor(author, description, image, title) {
-        super();
-        this.#author = author;
-        this.#description = description;
-        this.#image = image;
-        this.#title = title;
-    }
-
     get getAuthor() {
         return this.#author;
     }

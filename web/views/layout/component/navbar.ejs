@@ -7,7 +7,7 @@
             <li><a class="respon"href="<%= Routes.COMICS_ALL %>">SEMUA KOMIK</a> </li>
             <li><a class="respon" href="<%= Routes.COMICS_NEWEST %>">TERBARU</a></li>
         </div>
-        <% if (!AuthFlag.isAuthenticated()) { %>
+        <% if (!AuthFlag.isAuthenticated(request.session)) { %>
         <div class="kanan">
             <li>
                 <a href="javascript:void(0);" class="icon" onclick="find()">
@@ -20,8 +20,8 @@
         </div>
         <% } %>
         <%
-        if (AuthFlag.isAuthenticated()) {
-            const AuthModel = sessionStorage.getItem(SessionVariables.AUTH_MODEL);
+        if (AuthFlag.isAuthenticated(request.session)) {
+            const AuthModel = request.session.AuthModel;
         %>
         <div class="kanan">
             <li><a href="javascript:void(0);" class="icon" onclick="find()"> <i class="fa fa-search" aria-hidden="true"></i> </a></li>
@@ -29,13 +29,13 @@
             <i class="fa fa-caret-down" aria-hidden="true" style="color:#2095F2;" ></i>
             <li> <input class="respon" type="text" placeholder="   Cari"> </li>
             <ul id="dropdown"style="display:none">
-                <li ><a href="#" class="biru size18"><%= AuthModel.getEmail() %></a></li> <br>
-                <li onclick="verif();"><a class="hijau size14" href="javascript:void(0);"><%= AuthFlag.isVerified() ? "Terverifikasi" : "Belum Terverifikasi" %></a></li> <br>
+                <li ><a href="#" class="biru size18"><%= "a" + AuthModel[UsersReference.EMAIL] %></a></li> <br>
+                <li onclick="verif();"><a class="hijau size14" href="javascript:void(0);"><%= AuthFlag.isVerified(request.session) ? "Terverifikasi" : "Belum Terverifikasi" %></a></li> <br>
                 <li><a href="#" style="color:black; cursor:default;">Komik</a></li> <br>
                 <li><a class="abu"href="<%= Routes.COLLECTION_DUMMY %>">Koleksi</a></li> <br>
                 <li><a class="abu"href="<%= Routes.COLLECTION_BOUGHT_DUMMY %>">Terbeli</a></li> <br>
-                <li class="garis" onclick="profil();"><a href="javascript:void(0);" aria-disabled="<%= AuthFlag.isVerified() ? "true" : "false" %>">Edit Profil</a></li> <br>
-                <li  onclick="logout()"><a class="merah"href="javascript:void(0);">Logout</a></li>
+                <li class="garis" onclick="profil();"><a href="javascript:void(0);" aria-disabled="<%= AuthFlag.isVerified(request.session) ? "true" : "false" %>">Edit Profil</a></li> <br>
+                <li  onclick="logout()"><a class="merah" href="javascript:void(0);">Logout</a></li>
             </ul>
         </div>
         <% } %>
@@ -50,77 +50,76 @@
         </div>
     </ul>
 </nav>
+<% if (AuthFlag.isAuthenticated(request.session)) { %>
+    <!-- modal box -->
+    <div class="content" >
+        <div class="header">
+            <!-- <p>Data Tersimpan</p> -->
+            <label for="click" class="fas fa-times" onclick="closeverif();"></label>
+        </div>
+        <label for="click" class="fas fa-check" ></label>
+        <p>selamat! Komik berhasil ditambahkan dan telah tersimpan.</p>
+        <div class="line"></div>
+        <label for="click" class="close-btn" onclick="closeverif();">Close</label>
+    </div>
 
-<% if (AuthFlag.isAuthenticated()) { %>
-<!-- modal box -->
-<div class="content" >
-    <div class="header">
-        <!-- <p>Data Tersimpan</p> -->
-        <label for="click" class="fas fa-times" onclick="closeverif();"></label>
+    <div class="content2" >
+        <div class="header2">
+            <!-- <p>Data Tersimpan</p> -->
+            <label for="click" class="fas fa-times" onclick="closeverif();"></label>
+        </div>
+        <label id="kedua" for="click" class="fas fa-times" ></label>
+        <p> input masih ada yang kosong nih, isi dulu ya kak.</p>
+        <div class="line"></div>
+        <label for="click" class="close-btn2" onclick="closeverif();">Close</label>
     </div>
-    <label for="click" class="fas fa-check" ></label>
-    <p>selamat! Komik berhasil ditambahkan dan telah tersimpan.</p>
-    <div class="line"></div>
-    <label for="click" class="close-btn" onclick="closeverif();">Close</label>
-</div>
 
-<div class="content2" >
-    <div class="header2">
-        <!-- <p>Data Tersimpan</p> -->
-        <label for="click" class="fas fa-times" onclick="closeverif();"></label>
+    <!-- untuk verifikasi -->
+    <div class="bg-modal" id="verif" style="display:none;">
+        <div class="modal-konten">
+            <div class="tutup" onclick="tutup();">+</div>
+            <h1>verifikasi identitas kreator</h1>
+            <form class="" action="/web/auth/index.html" method="post">
+                <input type="text" name="" id="" placeholder="nama lengkap"><br>
+                <input type="text" name="" id="" placeholder="no. Telepon/HP"><br>
+                <input type="text" name="" id="" placeholder="alamat"><br>
+                <input type="date" name="" id=""><br>
+                <label for="file" style="padding-top:10px;">foto selfie dengan ktp</label> <br>
+                <input class="fileSize2" type="file" name="file" accept="image/*" onchange="readURL_verifakun(this);"> <br>
+                <img id="blah2" src="http://placehold.it/180" alt="your image" /> <br>
+                <p id="size2">Ukuran file : </p>
+            </form>
+            <button type="button" name="button" onclick="verifikasi();">verifikasi</button>
+        </div>
     </div>
-    <label id="kedua" for="click" class="fas fa-times" ></label>
-    <p> input masih ada yang kosong nih, isi dulu ya kak.</p>
-    <div class="line"></div>
-    <label for="click" class="close-btn2" onclick="closeverif();">Close</label>
-</div>
 
-<!-- untuk verifikasi -->
-<div class="bg-modal" id="verif" style="display:none;">
-    <div class="modal-konten">
-        <div class="tutup" onclick="tutup();">+</div>
-        <h1>verifikasi identitas kreator</h1>
-        <form class="" action="/web/auth/index.html" method="post">
-            <input type="text" name="" id="" placeholder="nama lengkap"><br>
-            <input type="text" name="" id="" placeholder="no. Telepon/HP"><br>
-            <input type="text" name="" id="" placeholder="alamat"><br>
-            <input type="date" name="" id=""><br>
-            <label for="file" style="padding-top:10px;">foto selfie dengan ktp</label> <br>
-            <input class="fileSize2" type="file" name="file" accept="image/*" onchange="readURL_verifakun(this);"> <br>
-            <img id="blah2" src="http://placehold.it/180" alt="your image" /> <br>
-            <p id="size2">Ukuran file : </p>
-        </form>
-        <button type="button" name="button" onclick="verifikasi();">verifikasi</button>
+    <!-- untuk edit profil -->
+    <div class="bg-modal" id="profil" style="display:none;">
+        <div class="modal-konten">
+            <div class="tutup" onclick="tutup();">+</div>
+            <h1>Edit Profil</h1>
+            <form class="" action="/web/auth/index.html" method="post">
+                <input type="text" name="<%= WebVariables.NAME %>" id="<%= WebVariables.NAME %>" placeholder="Nama Lengkap"><br>
+                <input type="text" name="<%= WebVariables.PHONE_NUMBER %>" id="<%= WebVariables.PHONE_NUMBER %>" placeholder="No. Telepon/HP"><br>
+                <input type="text" name="<%= WebVariables.ADDRESS %>" id="<%= WebVariables.ADDRESS %>" placeholder="Alamat"><br>
+                <input type="date" name="<%= WebVariables.DATE_OF_BIRTH %>" id="<%= WebVariables.DATE_OF_BIRTH %>" placeholder="Tanggal Lahir"><br>
+                <label for="file" style="padding-top:10px;">foto selfie dengan ktp</label> <br>
+                <input class="fileSize3" type="file" id="<%= WebVariables.NAME %>" name="<%= WebVariables.NAME %>" accept="image/*" onchange="readURL_editakun(this);"> <br>
+                <img id="blah3" src="http://placehold.it/180" alt="your image" /> <br>
+                <p id="size3">Ukuran file : </p>
+            </form>
+            <button type="button" name="button" onclick="verifikasi();">verifikasi</button>
+        </div>
     </div>
-</div>
-
-<!-- untuk edit profil -->
-<div class="bg-modal" id="profil" style="display:none;">
-    <div class="modal-konten">
-        <div class="tutup" onclick="tutup();">+</div>
-        <h1>Edit Profil</h1>
-        <form class="" action="/web/auth/index.html" method="post">
-            <input type="text" name="<%= WebVariables.NAME %>" id="<%= WebVariables.NAME %>" placeholder="Nama Lengkap"><br>
-            <input type="text" name="<%= WebVariables.PHONE_NUMBER %>" id="<%= WebVariables.PHONE_NUMBER %>" placeholder="No. Telepon/HP"><br>
-            <input type="text" name="<%= WebVariables.ADDRESS %>" id="<%= WebVariables.ADDRESS %>" placeholder="Alamat"><br>
-            <input type="date" name="<%= WebVariables.DATE_OF_BIRTH %>" id="<%= WebVariables.DATE_OF_BIRTH %>" placeholder="Tanggal Lahir"><br>
-            <label for="file" style="padding-top:10px;">foto selfie dengan ktp</label> <br>
-            <input class="fileSize3" type="file" id="<%= WebVariables.NAME %>" name="<%= WebVariables.NAME %>" accept="image/*" onchange="readURL_editakun(this);"> <br>
-            <img id="blah3" src="http://placehold.it/180" alt="your image" /> <br>
-            <p id="size3">Ukuran file : </p>
-        </form>
-        <button type="button" name="button" onclick="verifikasi();">verifikasi</button>
+    <!-- untuk peringatan keluar akun -->
+    <div class="bg-modal" id="keluarAkun" style="display:none;">
+        <div class="modal-konten" style="max-height: 150px;">
+            <h1>yakin ingin keluar?</h1>
+            <br>
+            <form action="<%= Routes.LOGOUT %>" method="post">
+                <button type="button" name="button" onclick="tutup();">tidak</button>
+                <button type="submit" name="button" onclick="signout();">ya</button>
+            </form>
+        </div>
     </div>
-</div>
-<!-- untuk peringatan keluar akun -->
-<div class="bg-modal" id="keluarAkun" style="display:none;">
-    <div class="modal-konten" style="max-height: 150px;">
-        <h1>yakin ingin keluar?</h1>
-        <br>
-        <form action="<%= Routes.LOGOUT %>" method="post">
-            <button type="button" name="button" onclick="tutup();">tidak</button>
-            <button type="submit" name="button" onclick="signout();">ya</button>
-        </form>
-    </div>
-</div>
 <% } %>

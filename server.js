@@ -1,10 +1,22 @@
+const AuthFlag = require("./src/flag/AuthFlag");
 const WebRoutes = require("./src/dictionary/web/Routes");
+const WebVariables = require("./src/dictionary/web/WebVariables");
+const SessionVariables = require("./src/dictionary/web/SessionVariables");
+const Routes = require("./src/dictionary/web/Routes")
+const FirebaseFlag = require("./src/flag/FirebaseFlag");
+const FirebaseConfig = require("./src/config/FirebaseConfig");
+const AuthModel = require("./src/model/AuthModel");
+const AuthController = require("./src/controller/AuthController");
+const StringGenerator = require("./src/helper/generator/StringGenerator");
+const UsersReference = require("./src/dictionary/database/reference/Users");
+
 const express = require("express");
 const path = require("path");
 const morgan = require("morgan");
 const liveReload = require("livereload");
 const connectLiveReload = require("connect-livereload");
 const ejsLayouts = require("express-ejs-layouts");
+const session = require("express-session");
 
 const liveReloadServer = liveReload.createServer();
 liveReloadServer.watch(path.join(__dirname, "/web"));
@@ -14,21 +26,40 @@ liveReloadServer.server.once("connection", () => {
     }, 100);
 })
 
+
 const app = express();
 app.set("views", "./web/views");
 app.set("view engine", "ejs");
-app.use(ejsLayouts);
 
+app.use(ejsLayouts);
 app.use(connectLiveReload());
 app.use(morgan("dev"));
+const secretKey = StringGenerator.generateSecretKey();
+app.use(
+    session({
+        secret: secretKey,
+        resave: false,
+        saveUninitialized: false
+    })
+);
+
+app.use(express.urlencoded({extended: false}));
+app.use((request, response, next) => {
+    if (!FirebaseFlag.isInitialized()) {
+        FirebaseConfig.init();
+        console.log("Firebase Initialized");
+    }
+    response.locals.request = request;
+    response.locals.AuthFlag = AuthFlag;
+    response.locals.WebVariables = WebVariables;
+    response.locals.SessionVariables = SessionVariables;
+    response.locals.Routes = Routes;
+    response.locals.UsersReference = UsersReference;
+    next();
+})
 
 app.use(express.static(path.join(__dirname, "/web/public")));
 app.use(express.urlencoded({ extended: false }));
-
-const AuthFlag = require("./src/flag/AuthFlag");
-const WebVariables = require("./src/dictionary/web/WebVariables");
-const SessionVariables = require("./src/dictionary/web/SessionVariables");
-const Routes = require("./src/dictionary/web/Routes");
 
 app.get(WebRoutes.HOME, (request, response) => {
     response.render("index", {
@@ -37,9 +68,10 @@ app.get(WebRoutes.HOME, (request, response) => {
         SessionVariables,
         Routes,
         layout: "layout/main",
-        css_file: AuthFlag.isAuthenticated() ? "home-masuk" : "home",
+        css_file: AuthFlag.isAuthenticated(request.session) ? "home-masuk" : "home",
         page_title: "Home"
-    })
+    });
+    console.log("HOME : " + secretKey);
 });
 
 app.get(WebRoutes.LOGIN, (request, response) => {
@@ -183,6 +215,19 @@ app.get(WebRoutes.TERMS_OF_SERVICE, (request, response) => {
         layout: "layout.main",
         css_file: "ketentuanLayanan"
     });
+});
+
+app.post(WebRoutes.LOGIN, (request, response) => {
+    let email = request.body[WebVariables.EMAIL];
+    let password = request.body[WebVariables.PASSWORD];
+
+    let model = new AuthModel();
+    model.setEmail = email;
+    model.setPassword = password;
+
+    let controller = new AuthController();
+    controller.read(request, response, model);
+    console.log("Login : " + secretKey);
 });
 
 const PORT = process.env.PORT || 8080;

@@ -14,16 +14,6 @@ class AuthModel extends BaseModel {
         super();
     }
 
-    constructor(address, date_of_birth, email, name, password, phone_number) {
-        super();
-        this.#address = address;
-        this.#date_of_birth = date_of_birth
-        this.#email = email;
-        this.#name = name;
-        this.#password = password;
-        this.#phone_number = phone_number;
-    }
-
     get getAddress() {
         return this.#address;
     }
@@ -78,6 +68,10 @@ class AuthModel extends BaseModel {
 
     set setVerified(verified) {
         this.#verified = verified;
+    }
+
+    toString() {
+        return `Email : ${this.#email},\nName : ${this.#name}\nVerified : ${this.#verified}`;
     }
 }
 

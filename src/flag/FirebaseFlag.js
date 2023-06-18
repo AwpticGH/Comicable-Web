@@ -1,6 +1,10 @@
+const BASE_PATH = require("../../BasePath");
+const FirebaseConfig = require(`${BASE_PATH}/src/config/FirebaseConfig`);
+
+
 class FirebaseFlag {
     static isInitialized() {
-        return firebase.apps.length === 0;
+        return FirebaseConfig.getFirebase().getApps().length > 0;
     }
 }
 

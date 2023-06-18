@@ -8,12 +8,6 @@ class CollectionModel extends BaseModel {
         super();
     }
 
-    constructor(comic, user) {
-        super();
-        this.#comic = comic;
-        this.#user = user;
-    }
-
     get getComic() {
         return this.#comic;
     }

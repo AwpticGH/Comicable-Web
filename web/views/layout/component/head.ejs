@@ -3,7 +3,7 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <link rel="stylesheet" href="/css/style.css" type="text/css">
 <link rel="stylesheet" href="/css/<%= css_file %>.css" type="text/css">
-<% if (AuthFlag.isAuthenticated()) { %>
+<% if (AuthFlag.isAuthenticated(request.session)) { %>
 <link rel="stylesheet" href="/css/modal_verifikasi.css" type="text/css">
 <% } %>
 <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">

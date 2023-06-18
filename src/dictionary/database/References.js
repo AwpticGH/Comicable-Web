@@ -1,6 +1,6 @@
 class References {
     static COLLECTIONS = "collections";
-    static USERS = "users";
+    static AUTH = "users";
     static CHECKPOINTS = "checkpoints";
 }
 
