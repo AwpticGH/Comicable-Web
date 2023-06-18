@@ -16,6 +16,7 @@
    - name
    - password
    - phone_number
+   - verified (0 or 1)
 3. checkpoints
    - user: users.uid
    - comic: comics.uid
