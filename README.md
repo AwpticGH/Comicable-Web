@@ -42,10 +42,10 @@
 
 ## To Do
 ### Frontend
-- [] Restructure folder (rafi)
+- [x] Restructure folder (rafi)
 - [] Konversi file ke ejs (rafi/praba)
-- [] Bikin layout components dan main layout (rafi/praba)
-- [] Remove unnecessary features, see tables in database section for reference (rafi)
+- [x] Bikin layout components dan main layout (rafi/praba)
+- [] Remove unnecessary features in web for crud, see tables in database section for reference (rafi)
 
 ### Backend
 - [] Nyari restful api (rafi)
