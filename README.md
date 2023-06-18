@@ -1,6 +1,9 @@
 # Comicable - Web Application (In Progress)
 
 ## Features:
+### Version 1.0
+
+
 ### Database CRUD
 #### Tables
 1. collections

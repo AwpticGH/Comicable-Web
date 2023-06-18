@@ -1,0 +1,22 @@
+[
+  {
+    "nama":"Si Abi",
+    "gambar": "/public/img/si abi77.jpg",
+    "pengarang":"Anone"
+  },
+  {
+      "nama":"Si Juki",
+      "gambar": "/public/img/si juki-keroyokan77.jpg",
+      "pengarang":"Faza Meong"
+  },
+  {
+    "nama":"Garudayana",
+    "gambar": "/public/img/garudayana77.jpg",
+    "pengarang":"Sukirman"
+  },
+  {
+    "nama":"Si Nopal",
+    "gambar": "/public/img/si nopal77.jpg",
+    "pengarang":"Anone"
+  }
+]
