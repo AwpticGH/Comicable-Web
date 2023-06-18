@@ -80,7 +80,7 @@ app.get(WebRoutes.REGISTER_2, (request, response) => {
 });
 
 app.get(WebRoutes.COLLECTION_DUMMY, (request, response) => {
-    response.render("comic_collection", {
+    response.render("collection/comic_collection", {
         AuthFlag,
         WebVariables,
         SessionVariables,
@@ -90,7 +90,101 @@ app.get(WebRoutes.COLLECTION_DUMMY, (request, response) => {
         page_title: "My Collection"
     });
 });
-// test
+
+app.get(WebRoutes.COLLECTION_BOUGHT_DUMMY, (request, response) => {
+    response.render("collection/comic_bought", {
+        AuthFlag,
+        WebVariables,
+        SessionVariables,
+        Routes,
+        layout: "layout/main",
+        css_file: "semua",
+        page_title: "Owned Book"
+    });
+});
+
+app.get(WebRoutes.COMIC_ALL, (request, response) => {
+    response.render("comic/all", {
+        AuthFlag,
+        WebVariables,
+        SessionVariables,
+        Routes,
+        layout: "layout.main",
+        css_file: "semua",
+        page_title: "All Comics"
+    });
+});
+
+app.get(WebRoutes.COMIC_DETAIL_DUMMY, (request, response) => {
+    response.render("comic/detail", {
+        AuthFlag,
+        WebVariables,
+        SessionVariables,
+        Routes,
+        layout: "layout.main",
+        css_file: "detail",
+        page_title: "Comic Details"
+    });
+});
+
+app.get(WebRoutes.COMIC_NEWEST, (request, response) => {
+    response.render("comic/newest", {
+        AuthFlag,
+        WebVariables,
+        SessionVariables,
+        Routes,
+        layout: "layout.main",
+        css_file: "terbaru",
+        page_title: "Newest Comics"
+    });
+});
+
+app.get(WebRoutes.CHAPTER_DUMMY, (reuest, response) => {
+    response.render("chapter/read", {
+        AuthFlag,
+        WebVariables,
+        SessionVariables,
+        Routes,
+        layout: "layout.main",
+        css_file: "view",
+        page_title: "Chapter Read"
+    });
+});
+
+app.get(WebRoutes.CUSTOMER_SUPPORT, (request, response) => {
+    response.render("information/customer_support", {
+        AuthFlag,
+        WebVariables,
+        SessionVariables,
+        Routes,
+        layout: "layout.main",
+        css_file: "dukunganPelanggan",
+        page_title: "Customer Support"
+    });
+});
+
+app.get(WebRoutes.ABOUT, (request, response) => {
+    response.render("information/about_us", {
+        AuthFlag,
+        WebVariables,
+        SessionVariables,
+        Routes,
+        layout: "layout.main",
+        css_file: "tentangKami",
+        page_title: "About Us"
+    });
+});
+
+app.get(WebRoutes.TERMS_OF_SERVICE, (request, response) => {
+    response.render("information/terms_of_service", {
+        AuthFlag,
+        WebVariables,
+        SessionVariables,
+        Routes,
+        layout: "layout.main",
+        css_file: "ketentuanLayanan"
+    });
+});
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
