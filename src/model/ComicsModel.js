@@ -1,35 +1,53 @@
 const BaseModel = require("./BaseModel");
 
-class ComicsModel {
-    author;
-    description;
-    image;
-    title;
+class ComicsModel extends BaseModel {
+    #author;
+    #description;
+    #image;
+    #title;
+
     constructor() {
         super();
     }
 
     constructor(author, description, image, title) {
-        this.author = author;
-        this.description = description;
-        this.image = image;
-        this.title = title;
+        super();
+        this.#author = author;
+        this.#description = description;
+        this.#image = image;
+        this.#title = title;
     }
 
     get getAuthor() {
-        return author;
+        return this.#author;
+    }
+
+    set setAuthor(author) {
+        this.#author = author;
     }
 
     get getDescription() {
-        return description;
+        return this.#description;
+    }
+
+    set setDescription(description) {
+        this.#description = description;
     }
 
     get getImage() {
-        return image;
+        return this.#image;
+    }
+
+    set setImage(image) {
+        this.#image = image;
     }
 
     get getTitle() {
-        return title;
+        return this.#title;
+    }
+
+    set setTitle(title) {
+        this.#title = title;
     }
 }
 

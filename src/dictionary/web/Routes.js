@@ -6,6 +6,7 @@ class Routes {
     static LOGIN = "/auth/login";
     static REGISTER_1 = "/auth/register-email";
     static REGISTER_2 = "/auth/register-password";
+    static LOGOUT = "/auth/logout";
     static COLLECTION = "/collection:user_id";
     static COLLECTION_DUMMY = "/collection";
     static COLLECTION_BOUGHT = "/collection/bought:user_id";

@@ -10,24 +10,24 @@ class CollectionModel extends BaseModel {
 
     constructor(comic, user) {
         super();
-        this.comic = comic;
-        this.user = user;
+        this.#comic = comic;
+        this.#user = user;
     }
 
     get getComic() {
-        return this.comic;
+        return this.#comic;
     }
 
     set setComic(comic) {
-        this.comic = comic;
+        this.#comic = comic;
     }
 
     get getUser() {
-        return this.user;
+        return this.#user;
     }
 
     set setUser(user) {
-        this.user = user;
+        this.#user = user;
     }
 }
 

@@ -6,6 +6,10 @@ class AuthFlag {
     static isAuthenticated() {
         return SessionUtility.getSessionStorage().hasOwnProperty(SessionVariables.AUTH_MODEL);
     }
+
+    static isVerified() {
+        return SessionUtility.getSessionStorage().getItem(SessionVariables.AUTH_MODEL).isVerified();
+    }
 }
 
 module.exports = AuthFlag;
