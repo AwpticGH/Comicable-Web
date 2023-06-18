@@ -1,11 +1,15 @@
-class CollectionModel {
+const BaseModel = require("./BaseModel");
+
+class CollectionModel extends BaseModel {
     #comic;
     #user;
 
     constructor() {
+        super();
     }
 
     constructor(comic, user) {
+        super();
         this.comic = comic;
         this.user = user;
     }
