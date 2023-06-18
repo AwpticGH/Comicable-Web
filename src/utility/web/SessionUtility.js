@@ -6,7 +6,7 @@ class SessionUtility {
         else {
             return {
                 hasOwnProperty: () => false,
-                getItem: () => "undefined"
+                getItem: (key) => "undefined"
             }
         }
     }

@@ -79,6 +79,18 @@ app.get(WebRoutes.REGISTER_2, (request, response) => {
     });
 });
 
+app.get(WebRoutes.COLLECTION_DUMMY, (request, response) => {
+    response.render("comic_collection", {
+        AuthFlag,
+        WebVariables,
+        SessionVariables,
+        Routes,
+        layout: "layout/main",
+        css_file: "semua",
+        page_title: "My Collection"
+    });
+});
+
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log(`App Started! Listening On Port ${PORT}`);
