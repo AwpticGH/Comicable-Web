@@ -29,7 +29,6 @@ const AuthFlag = require("./src/flag/AuthFlag");
 const WebVariables = require("./src/dictionary/web/WebVariables");
 const SessionVariables = require("./src/dictionary/web/SessionVariables");
 const Routes = require("./src/dictionary/web/Routes");
-const { request } = require("express");
 
 app.get(WebRoutes.HOME, (request, response) => {
     response.render("index", {
@@ -90,7 +89,6 @@ app.get(WebRoutes.COLLECTION_DUMMY, (request, response) => {
         page_title: "My Collection"
     });
 });
-// test
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
