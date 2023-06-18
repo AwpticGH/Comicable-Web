@@ -76,6 +76,6 @@ function validasi2(){
 //lanjut ke halaman selanjutnya
 function lanjut(){
   if(isPanjang == false && isPendek == false && iskKecil == true && iskBesar==true && iskAngka==true){
-    window.location.href = "/web/unauth/login.html";
+    window.location.href = "/web/unauth/login-original.html";
   }
 }

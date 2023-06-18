@@ -20,6 +20,6 @@ function lanjut(){
   if(isEmail===true){
     let email = document.getElementById("myemail").value;
     sessionStorage.setItem("email", email);
-    window.location.href = "/web/unauth/daftar2.html";
+    window.location.href = "/web/unauth/daftar2-original.html";
   }
 }

@@ -25,12 +25,13 @@ app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, "/web/public")));
 app.use(express.urlencoded({ extended: false }));
 
+const AuthFlag = require("./src/flag/AuthFlag");
+const WebVariables = require("./src/dictionary/web/WebVariables");
+const SessionVariables = require("./src/dictionary/web/SessionVariables");
+const Routes = require("./src/dictionary/web/Routes");
+const {request} = require("express");
+
 app.get(WebRoutes.HOME, (request, response) => {
-    // response.sendFile(path.join(__dirname, "/web/views/index-original.html"));
-    let AuthFlag = require("./src/flag/AuthFlag");
-    let WebVariables = require("./src/dictionary/web/WebVariables");
-    let SessionVariables = require("./src/dictionary/web/SessionVariables");
-    let Routes = require("./src/dictionary/web/Routes");
     response.render("index", {
         AuthFlag,
         WebVariables,
@@ -41,9 +42,42 @@ app.get(WebRoutes.HOME, (request, response) => {
         page_title: "Home"
     })
 });
-app.get(WebRoutes.ABOUT, (request, response) => {
-    response.sendFile(path.join(__dirname, "/web/views/information/dukunganPelanggan.html"));
-})
+
+app.get(WebRoutes.LOGIN, (request, response) => {
+    response.render("auth/login", {
+        AuthFlag,
+        WebVariables,
+        SessionVariables,
+        Routes,
+        layout: "layout/main",
+        css_file: "masuk_daftar",
+        page_title: "Login"
+    });
+});
+
+app.get(WebRoutes.REGISTER_1, (request, response) => {
+    response.render("auth/register1", {
+        AuthFlag,
+        WebVariables,
+        SessionVariables,
+        Routes,
+        layout: "layout/main",
+        css_file: "masuk_daftar",
+        page_title: "Register Email"
+    });
+});
+
+app.get(WebRoutes.REGISTER_2, (request, response) => {
+    response.render("auth/register2", {
+        AuthFlag,
+        WebVariables,
+        SessionVariables,
+        Routes,
+        layout: "layout/main",
+        css_file: "masuk_daftar",
+        page_title: "Register Password"
+    });
+});
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {

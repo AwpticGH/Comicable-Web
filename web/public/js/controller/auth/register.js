@@ -44,5 +44,5 @@ function save_user(password) {
     updates['/users/' + uid] = data;
     firebase.database().ref().update(updates);
     sessionStorage.removeItem("email");
-    window.location.href = "/web/unauth/login.html";
+    window.location.href = "/web/unauth/login-original.html";
 }

@@ -1,0 +1,14 @@
+<!-- conten -->
+<div class="konten">
+    <form id="submitForm">
+        <h1>DAFTAR</h1><br>
+        <input onkeyup="validasi();" type="password" name="" placeholder="Masukkan kata sandi" id="pass" autocomplete="true"><br>
+        <input onkeyup="validasi2();" type="password" name="" id="pass2" placeholder="Konfirmasi kata sandi" autocomplete="true"><br>
+        <p style="display:none;color:red;" id="samain">*konfirmasi password tidak sama</p>
+        <p style="display:none;color:red;" id="panjangPendek">*password panjangnya harus 5 sampai 12 karakter</p>
+        <p style="display:none;color:red;" id="kKecil">*password harus memiliki 1 karakter huruf kecil</p>
+        <P style="display:none; color:red;" id="kBesar">*password harus memiliki 1 karakter huruf besar</P>
+        <p style="display:none;color:red;" id="kAngka">*password harus memiliki 1 karakter angka</p>
+        <button name="button" id="submit">Daftar</button>
+    </form>
+</div>
