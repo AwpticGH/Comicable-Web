@@ -1,7 +1,7 @@
 class References {
-    static COLLECTIONS = "collections";
+    static COLLECTION = "collections";
     static AUTH = "users";
-    static CHECKPOINTS = "checkpoints";
+    static CHECKPOINT = "checkpoints";
 }
 
 module.exports = References;

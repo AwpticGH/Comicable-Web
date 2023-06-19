@@ -10,6 +10,7 @@ const CollectionModel = require("./src/model/CollectionModel");
 const AuthController = require("./src/controller/AuthController");
 const StringGenerator = require("./src/helper/generator/StringGenerator");
 const UsersReference = require("./src/dictionary/database/reference/Users");
+const CollectionController = require("./src/controller/CollectionController");
 
 const express = require("express");
 const path = require("path");

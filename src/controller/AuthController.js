@@ -57,6 +57,10 @@ class AuthController {
         }
     }
 
+    create(request, response) {
+
+    }
+
 }
 
 module.exports = AuthController;

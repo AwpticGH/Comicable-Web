@@ -2,7 +2,7 @@ const BASE_PATH = require("../../BasePath");
 const Routes = require(`${BASE_PATH}/src/dictionary/web/Routes`);
 const CollectionModel = require(`${BASE_PATH}/src/model/CollectionModel`);
 const References = require(`${BASE_PATH}/src/dictionary/database/References`);
-const { getDatabase, set, get, } = require("firebase/database");
+const { getDatabase, set, get, ref } = require("firebase/database");
 const SessionUtility = require(`${BASE_PATH}/src/utility/web/SessionUtility`);
 const SessionVariables = require(`${BASE_PATH}/src/dictionary/web/SessionVariables`);
 
@@ -17,27 +17,28 @@ class CollectionController {
                 user: model.getUser
             });
             saved = true;
-        };
+        }
         if (saved) {
             response.redirect(Routes.COLLECTION_BOUGHT_DUMMY);
-        };
-    };
+        }
+    }
 
     read(request, response, model) {
         let found = false;
         console.log("READING");
         if (model instanceof CollectionModel) {
             let database = getDatabase();
-            let reference = (database, References.COLLECTION);
+            let reference = ref(database, References.COLLECTION);
             console.log("GETTING REFERENCE");
             get(reference).then((snapshot) => {
-                snapshot.forEach((DataSnapshot) => {
-                    let data = DataSnapshot.val().user;
+                snapshot.forEach((dataSnapshot) => {
+                    let data = dataSnapshot.val().user;
                     if (data === model.getUser) {
-                        request.session[SessionVariables.COLLECTION][DataSnapshot.key] = DataSnapshot.val();
+                        request.session[SessionVariables.COLLECTION] = {};
+                        request.session[SessionVariables.COLLECTION][dataSnapshot.key] = dataSnapshot.val();
                         found = true;
                         console.log("FOUND");
-                        console.log(JSON.stringify(request.session));
+                        console.log(JSON.stringify(request.session[SessionVariables.COLLECTION]));
                     }
                 });
 
