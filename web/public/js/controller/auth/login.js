@@ -10,7 +10,7 @@ form.addEventListener("submit", function(event) {
     //         let email = data.val().email;
     //         console.log(email);
     //     });
-    // });
+    // });/
 
     reference.child("users").orderByChild('email').equalTo(email).once('value').then((snapshot) => {
         console.log("masuk fungsi login");

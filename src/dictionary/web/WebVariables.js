@@ -7,6 +7,7 @@ class WebVariables {
     static ADDRESS = "user-address";
     static IMAGE = "user-image";
     static DATE_OF_BIRTH = "user-date-of-birth";
+    static UID = "user-uid";
 }
 
 module.exports = WebVariables;

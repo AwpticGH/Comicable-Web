@@ -6,6 +6,7 @@ const Routes = require("./src/dictionary/web/Routes")
 const FirebaseFlag = require("./src/flag/FirebaseFlag");
 const FirebaseConfig = require("./src/config/FirebaseConfig");
 const AuthModel = require("./src/model/AuthModel");
+const CollectionModel = require("./src/model/CollectionModel");
 const AuthController = require("./src/controller/AuthController");
 const StringGenerator = require("./src/helper/generator/StringGenerator");
 const UsersReference = require("./src/dictionary/database/reference/Users");
@@ -43,7 +44,7 @@ app.use(
     })
 );
 
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 app.use((request, response, next) => {
     if (!FirebaseFlag.isInitialized()) {
         FirebaseConfig.init();
@@ -56,30 +57,21 @@ app.use((request, response, next) => {
     response.locals.Routes = Routes;
     response.locals.UsersReference = UsersReference;
     next();
-})
+});
 
 app.use(express.static(path.join(__dirname, "/web/public")));
 app.use(express.urlencoded({ extended: false }));
 
 app.get(WebRoutes.HOME, (request, response) => {
     response.render("index", {
-        AuthFlag,
-        WebVariables,
-        SessionVariables,
-        Routes,
         layout: "layout/main",
         css_file: AuthFlag.isAuthenticated(request.session) ? "home-masuk" : "home",
         page_title: "Home"
     });
-    console.log("HOME : " + secretKey);
 });
 
 app.get(WebRoutes.LOGIN, (request, response) => {
     response.render("auth/login", {
-        AuthFlag,
-        WebVariables,
-        SessionVariables,
-        Routes,
         layout: "layout/main",
         css_file: "masuk_daftar",
         page_title: "Login"
@@ -88,10 +80,6 @@ app.get(WebRoutes.LOGIN, (request, response) => {
 
 app.get(WebRoutes.REGISTER_1, (request, response) => {
     response.render("auth/register1", {
-        AuthFlag,
-        WebVariables,
-        SessionVariables,
-        Routes,
         layout: "layout/main",
         css_file: "masuk_daftar",
         page_title: "Register Email"
@@ -100,34 +88,35 @@ app.get(WebRoutes.REGISTER_1, (request, response) => {
 
 app.get(WebRoutes.REGISTER_2, (request, response) => {
     response.render("auth/register2", {
-        AuthFlag,
-        WebVariables,
-        SessionVariables,
-        Routes,
         layout: "layout/main",
         css_file: "masuk_daftar",
         page_title: "Register Password"
     });
 });
 
+app.get(WebRoutes.COLLECTION, (request, response) => {
+    // let uid = request.params[WebVariables.UID];
+    // let model = new CollectionModel();
+    // model.setUid = uid;
+});
+
 app.get(WebRoutes.COLLECTION_DUMMY, (request, response) => {
-    response.render("collection/comic_collection", {
-        AuthFlag,
-        WebVariables,
-        SessionVariables,
-        Routes,
-        layout: "layout/main",
-        css_file: "semua",
-        page_title: "My Collection"
-    });
+    let uid = request.session[SessionVariables.AUTH_MODEL][SessionVariables.UID];
+    let model = new CollectionModel();
+    model.setUser = uid;
+
+    let controller = new CollectionController();
+    controller.read(request, response, model);
+
+    // response.render("collection/comic_collection", {
+    //     layout: "layout/main",
+    //     css_file: "semua",
+    //     page_title: "My Collection"
+    // });
 });
 
 app.get(WebRoutes.COLLECTION_BOUGHT_DUMMY, (request, response) => {
     response.render("collection/comic_bought", {
-        AuthFlag,
-        WebVariables,
-        SessionVariables,
-        Routes,
         layout: "layout/main",
         css_file: "semua",
         page_title: "Owned Book"
@@ -136,10 +125,6 @@ app.get(WebRoutes.COLLECTION_BOUGHT_DUMMY, (request, response) => {
 
 app.get(WebRoutes.COMIC_ALL, (request, response) => {
     response.render("comic/all", {
-        AuthFlag,
-        WebVariables,
-        SessionVariables,
-        Routes,
         layout: "layout.main",
         css_file: "semua",
         page_title: "All Comics"
@@ -148,10 +133,6 @@ app.get(WebRoutes.COMIC_ALL, (request, response) => {
 
 app.get(WebRoutes.COMIC_DETAIL_DUMMY, (request, response) => {
     response.render("comic/detail", {
-        AuthFlag,
-        WebVariables,
-        SessionVariables,
-        Routes,
         layout: "layout.main",
         css_file: "detail",
         page_title: "Comic Details"
@@ -160,10 +141,6 @@ app.get(WebRoutes.COMIC_DETAIL_DUMMY, (request, response) => {
 
 app.get(WebRoutes.COMIC_NEWEST, (request, response) => {
     response.render("comic/newest", {
-        AuthFlag,
-        WebVariables,
-        SessionVariables,
-        Routes,
         layout: "layout.main",
         css_file: "terbaru",
         page_title: "Newest Comics"
@@ -172,10 +149,6 @@ app.get(WebRoutes.COMIC_NEWEST, (request, response) => {
 
 app.get(WebRoutes.CHAPTER_DUMMY, (reuest, response) => {
     response.render("chapter/read", {
-        AuthFlag,
-        WebVariables,
-        SessionVariables,
-        Routes,
         layout: "layout.main",
         css_file: "view",
         page_title: "Chapter Read"
@@ -184,10 +157,6 @@ app.get(WebRoutes.CHAPTER_DUMMY, (reuest, response) => {
 
 app.get(WebRoutes.CUSTOMER_SUPPORT, (request, response) => {
     response.render("information/customer_support", {
-        AuthFlag,
-        WebVariables,
-        SessionVariables,
-        Routes,
         layout: "layout.main",
         css_file: "dukunganPelanggan",
         page_title: "Customer Support"
@@ -196,10 +165,6 @@ app.get(WebRoutes.CUSTOMER_SUPPORT, (request, response) => {
 
 app.get(WebRoutes.ABOUT, (request, response) => {
     response.render("information/about_us", {
-        AuthFlag,
-        WebVariables,
-        SessionVariables,
-        Routes,
         layout: "layout.main",
         css_file: "tentangKami",
         page_title: "About Us"
@@ -208,10 +173,6 @@ app.get(WebRoutes.ABOUT, (request, response) => {
 
 app.get(WebRoutes.TERMS_OF_SERVICE, (request, response) => {
     response.render("information/terms_of_service", {
-        AuthFlag,
-        WebVariables,
-        SessionVariables,
-        Routes,
         layout: "layout.main",
         css_file: "ketentuanLayanan"
     });

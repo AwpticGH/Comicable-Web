@@ -38,11 +38,11 @@ class AuthController {
                             console.log("Password Is Equal, Storing To Session");
 
                             request.session[SessionVariables.AUTH_MODEL] = dataSnapshot.val();
+                            request.session[SessionVariables.AUTH_MODEL][SessionVariables.UID] = dataSnapshot.key;
                             request.session.save();
                             console.log("Saved To Session, Redirecting To Home");
                             response.redirect(Routes.HOME);
-                        }
-                        else {
+                        } else {
                             console.log("Credentials Incorrect!!!");
                             response.redirect(Routes.LOGIN);
                         }
