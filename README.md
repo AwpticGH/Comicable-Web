@@ -1,8 +1,7 @@
 # Comicable - Web Application (In Progress)
 
 ## Features:
-### Version 1.0
-
+## Version 1.0
 
 ### Database CRUD
 #### Tables
@@ -38,8 +37,16 @@
    - collections
    - checkpoints (kalo delete collection nya)
  
+## Version 1.1
 ### Manga API
-- Tambah kalo udah ketemu
+Provides unofficial public API \
+from https://shinigami.id \
+originally from https://github.com/AzwarKusumah/ryukoapi-shinigami \
+with restructured code architecture by AwpticGH
+
+## Version 2.0
+### Web
+Integration of the API into the website with crud features
 
 ## To Do
 ### Frontend
