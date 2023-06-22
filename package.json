@@ -5,8 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "nodemon server.js",
-    "start": "nodemon server.js"
+    "start": "node server.js"
   },
+  "gcp-build": "",
   "author": "AwpticGH",
   "license": "ISC",
   "dependencies": {

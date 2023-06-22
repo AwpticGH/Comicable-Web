@@ -1,6 +1,6 @@
 const BaseModel = require("../BaseModel");
 
-class DataModel {
+class DetailModel {
     #title;
     #alternative;
     #rank;
@@ -118,4 +118,4 @@ class DataModel {
     }
 }
 
-module.exports = DataModel;
+module.exports = DetailModel;

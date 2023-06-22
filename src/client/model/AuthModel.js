@@ -1,5 +1,4 @@
 const BaseModel = require("./BaseModel");
-const {add} = require("nodemon/lib/rules");
 
 class AuthModel extends BaseModel {
     #address;

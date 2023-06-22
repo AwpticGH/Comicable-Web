@@ -60,7 +60,12 @@ class SearchController {
 
                     let link = $(el).attr("href");
                     if (link) {
-                        paginationModel.endpoint = link.replace(ExternalUrl.URL, "/").slice(0, 7);
+                        paginationModel.endpoint = link
+                            .replace(ExternalUrl.URL, "/")
+                            .slice(0, link.includes("page") ? 7 : 0);
+                    } 
+                    else {
+                        paginationModel.endpoint = `/page/${page}`;
                     }
 
                     dataModel.pagination.push(paginationModel.toJSON());

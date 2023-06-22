@@ -20,6 +20,7 @@ class SeriesController {
                     "User-Agent": "Chrome",
                 }
             }).then((result) => {
+                responseModel.status = 200;
                 const $ = cheerio.load(result.data);
                 let dataModel = new DataModel();
                 dataModel.chapters = [];
@@ -68,8 +69,12 @@ class SeriesController {
             });
         }
         catch (error) {
-            responseModel.status = 404;
-            responseModel.message = "Failed To Fetch Data";
+            if (responseModel.status === undefined) {
+                responseModel.status = 404;
+            }
+            if (responseModel.message === undefined) {
+                responseModel.message = "Failed To Fetch Data";
+            }
         }
         finally {
             return responseModel.toJSON();
