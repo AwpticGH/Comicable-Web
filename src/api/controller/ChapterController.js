@@ -4,6 +4,7 @@ const ExternalUrl = require("../dictionary/ExternalUrl");
 const ResponseModel = require("../model/ResponseModel");
 const DataModel = require("../model/chapter/DataModel");
 const PaginationModel = require("../model/chapter/PaginationModel");
+const ResponseMessages = require("../dictionary/ResponseMessages");
 
 class ChapterController {
     static async get(request) {
@@ -35,7 +36,7 @@ class ChapterController {
                         .get();
                 });
                 dataModel.images = image;
-                responseModel.message = "Successfully Fetched Images";
+                responseModel.message = ResponseMessages.PARTIAL;
 
                 let paginationModel = new PaginationModel();
                 paginationModel.previous = $(".wp-manga-nav")
@@ -50,14 +51,18 @@ class ChapterController {
                     .slice(0, -1);
 
                 dataModel.pagination = paginationModel.toJSON();
-                responseModel.message = "Successfully Fetched All Data";
+                responseModel.message = ResponseMessages.FULL;
 
                 responseModel.data = dataModel.toJSON();
             });
         }
         catch (error) {
-            responseModel.status = 404;
-            responseModel.message = "Failed To Fetch Data";
+            if (responseModel.status === undefined) {
+                responseModel.status = 404;
+            }
+            if (responseModel.message === undefined) {
+                responseModel.message = ResponseMessages.FAIL;
+            }
         }
         finally {
             return responseModel.toJSON();

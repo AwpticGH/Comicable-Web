@@ -6,6 +6,7 @@ const DataModel = require("../model/project/DataModel");
 const ProjectModel = require("../model/project/ProjectModel");
 const ChapterModel = require("../model/project/ChapterModel");
 const PaginationModel = require("../model/project/PaginationModel");
+const ResponseMessages = require("../dictionary/ResponseMessages");
 
 class ProjectController {
     static async get(request) {
@@ -52,7 +53,7 @@ class ProjectController {
 
                     dataModel.projects.push(projectModel.toJSON());
                 });
-                responseModel.message = "Successfully Fetched Projects Data";
+                responseModel.message = ResponseMessages.PARTIAL;
 
                 $(".wp-pagenavi .page, .wp-pagenavi .current, .previouspostslink, .nextpostslink").each((i, el) => {
                     let paginationModel = new PaginationModel();
@@ -65,14 +66,18 @@ class ProjectController {
 
                     dataModel.pagination.push(paginationModel.toJSON());
                 });
-                responseModel.message = "Successfully Fetched All Data";
+                responseModel.message = ResponseMessages.FULL;
 
                 responseModel.data = dataModel.toJSON();
             });
         }
         catch (error) {
-            responseModel.status = 404;
-            responseModel.message = "Failed To Fetch Data";
+            if (responseModel.status === undefined) {
+                responseModel.status = 404;
+            }
+            if (responseModel.message === undefined) {
+                responseModel.message = ResponseMessages.FAIL;
+            }
         }
         finally {
             return responseModel.toJSON();

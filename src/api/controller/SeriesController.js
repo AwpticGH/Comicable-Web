@@ -5,6 +5,7 @@ const ResponseModel = require("../model/ResponseModel");
 const DataModel = require("../model/series/DataModel");
 const DetailModel = require("../model/series/DetailModel");
 const ChaptersModel = require("../model/series/ChaptersModel");
+const ResponseMessages = require("../dictionary/ResponseMessages");
 
 class SeriesController {
     static async get(request) {
@@ -50,7 +51,7 @@ class SeriesController {
 
                     dataModel.detail = detailModel.toJSON();
                 });
-                responseModel.message = "Successfully Fetched Series Detail";
+                responseModel.message = ResponseMessages.PARTIAL;
 
                 $(".wp-manga-chapter").each((i, el) => {
                     let chapterModel = new ChaptersModel();
@@ -63,7 +64,7 @@ class SeriesController {
 
                     dataModel.chapters.push(chapterModel.toJSON());
                 });
-                responseModel.message = "Successfully Fetched All Data";
+                responseModel.message = ResponseMessages.FULL;
 
                 responseModel.data = dataModel.toJSON();
             });
@@ -73,7 +74,7 @@ class SeriesController {
                 responseModel.status = 404;
             }
             if (responseModel.message === undefined) {
-                responseModel.message = "Failed To Fetch Data";
+                responseModel.message = ResponseMessages.FAIL;
             }
         }
         finally {

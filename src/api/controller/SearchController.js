@@ -5,6 +5,7 @@ const ResponseModel = require("../model/ResponseModel");
 const DataModel = require("../model/search/DataModel");
 const SearchModel = require("../model/search/SearchModel");
 const PaginationModel = require("../model/search/PaginationModel");
+const ResponseMessages = require("../dictionary/ResponseMessages");
 
 class SearchController {
     static async get(request) {
@@ -52,7 +53,7 @@ class SearchController {
                     dataModel.searches.push(searchModel.toJSON());
                 });
                 responseModel.data = dataModel.toJSON();
-                responseModel.message = "Successfully Fetched Search Data";
+                responseModel.message = ResponseMessages.PARTIAL;
 
                 $(".wp-pagenavi .page, .wp-pagenavi .current, .previouspostslink, .nextpostslink").each((i, el) => {
                     let paginationModel = new PaginationModel();
@@ -71,7 +72,7 @@ class SearchController {
                     dataModel.pagination.push(paginationModel.toJSON());
                 });
                 responseModel.data = dataModel.toJSON();
-                responseModel.message = "Successfully Fetched All Data";
+                responseModel.message = ResponseMessages.FULL;
             });
         }
         catch (error) {
@@ -79,7 +80,7 @@ class SearchController {
                 responseModel.status = 404;
             }
             if (responseModel.message === undefined) {
-                responseModel.message = "Failed To Fetch All Data, Please Report Developer For Bug";
+                responseModel.message = ResponseMessages.FAIL;
             }
         }
         finally {

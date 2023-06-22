@@ -4,6 +4,7 @@ const ExternalUrl = require("../dictionary/ExternalUrl");
 const ResponseModel = require("../model/ResponseModel");
 const HomeModel = require("../model/home/HomeModel");
 const DataModel = require("../model/home/DataModel");
+const ResponseMessages = require("../dictionary/ResponseMessages");
 
 class HomeController {
     static async get() {
@@ -38,7 +39,7 @@ class HomeController {
                     dataModel.trending.push(homeModel.toJSON());
                 });
                 responseModel.data = dataModel.toJSON();
-                responseModel.message = "Successfully Fetched Trending Data";
+                responseModel.message = ResponseMessages.PARTIAL;
 
                 $(".latest .col-xl-3").each((i, el) => {
                     let homeModel = new HomeModel();
@@ -53,7 +54,6 @@ class HomeController {
                     dataModel.latest.push(homeModel.toJSON());
                 });
                 responseModel.data = dataModel.toJSON();
-                responseModel.message = "Successfully Fetched Trending and Newest Data";
 
                 $(".recommendations2 .col-xl-2").each((i, el) => {
                     let homeModel = new HomeModel();
@@ -68,7 +68,7 @@ class HomeController {
                     dataModel.mirror.push(homeModel.toJSON());
                 });
                 responseModel.data = dataModel.toJSON();
-                responseModel.message = "Successfully Fetched All Data";
+                responseModel.message = ResponseMessages.FULL;
             });
         }
         catch (error) {
@@ -76,7 +76,7 @@ class HomeController {
                 responseModel.status = 404;
             }
             if (responseModel.message === undefined) {
-                responseModel.message = "Failed To Fetch Any Data";
+                responseModel.message = ResponseMessages.FAIL;
             }
         }
         finally {
