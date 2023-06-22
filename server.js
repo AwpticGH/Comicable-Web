@@ -28,7 +28,7 @@ app.set("view engine", "ejs");
 app.set("trust proxy", true);
 app.use(ejsLayouts);
 
-if (process.env.NODE_ENV === "development") {
+if (process.env.NODE_ENV === "development" || process.env.NODE_ENV === undefined) {
     console.log("Env : " + process.env.NODE_ENV);
     const morgan = require("morgan");
     const liveReload = require("livereload");
