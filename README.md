@@ -6,19 +6,22 @@
 ### Database CRUD
 #### Tables
 1. collections
-   - comic: comic title (from api)
+   - uid
+   - title: comic title (from api)
    - user: users.uid
 2. users
+   - uid
    - address
    - date_of_birth
    - email
-   - name
+   - first_name
+   - last_name
    - password
    - phone_number
    - verified (0 or 1)
 3. checkpoints
-   - user: users.uid
-   - comic: comics.uid
+   - uid
+   - collection: collection.uid
    - chapter
 
 #### CRUD
