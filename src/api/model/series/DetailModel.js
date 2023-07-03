@@ -3,6 +3,7 @@ const BaseModel = require("../BaseModel");
 class DetailModel {
     #title;
     #alternative;
+    #type;
     #rank;
     #rating;
     #author;
@@ -35,6 +36,14 @@ class DetailModel {
 
     set alternative(value) {
         this.#alternative = value;
+    }
+
+    get type() {
+        return this.#type;
+    }
+
+    set type(value) {
+        this.#type = value;
     }
 
     get rank() {
@@ -105,6 +114,7 @@ class DetailModel {
         return {
             title: this.title,
             alternative: this.alternative,
+            type: this.type,
             rank: this.rank,
             rating: this.rating,
             author: this.author,

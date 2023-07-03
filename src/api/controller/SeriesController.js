@@ -32,6 +32,7 @@ class SeriesController {
                     let detailModel = new DetailModel();
                     detailModel.title = $(el).find(".post-title > h1").text().trim();
                     detailModel.alternative = $(el).find(".summary-content").eq(2).text().trim();
+                    detailModel.type = $(el).find(".summary-content").eq(6).text().trim();
                     detailModel.rank = $(el).find(".summary-content").eq(1).text().trim();
                     detailModel.author = $(el).find(".author-content").text().trim();
                     detailModel.artist = $(el).find(".artist-content").text().trim();
