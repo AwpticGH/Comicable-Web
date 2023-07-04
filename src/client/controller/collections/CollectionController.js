@@ -1,4 +1,4 @@
-const BASE_PATH = require("../../../BasePath");
+const BASE_PATH = require("../../../../BasePath");
 const Routes = require(`${BASE_PATH}/src/client/dictionary/web/Routes`);
 const CollectionModel = require(`${BASE_PATH}/src/client/model/CollectionModel`);
 const References = require(`${BASE_PATH}/src/client/dictionary/database/References`);

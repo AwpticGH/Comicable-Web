@@ -1,32 +1,14 @@
 const BaseModel = require("./BaseModel");
 
 class AuthModel extends BaseModel {
-    #address;
-    #date_of_birth
     #email;
-    #name;
     #password;
-    #phone_number;
+    #first_name;
+    #last_name;
     #verified;
 
     constructor() {
         super();
-    }
-
-    get getAddress() {
-        return this.#address;
-    }
-
-    set setAddress(address) {
-        this.#address = address;
-    }
-
-    get getDatOfBirth() {
-        return this.#date_of_birth;
-    }
-
-    set setDateOfBirth(date_of_birth) {
-        this.#date_of_birth = date_of_birth;
     }
 
     get getEmail() {
@@ -37,14 +19,6 @@ class AuthModel extends BaseModel {
         this.#email = email;
     }
 
-    get getName() {
-        return this.#name;
-    }
-
-    set setName(name) {
-        this.#name = name;
-    }
-
     get getPassword() {
         return this.#password;
     }
@@ -53,12 +27,20 @@ class AuthModel extends BaseModel {
         this.#password = password;
     }
 
-    get getPhoneNumber() {
-        return this.#phone_number;
+    get first_name() {
+        return this.#first_name;
     }
 
-    set setPhoneNumber(phone_number) {
-        this.#phone_number = phone_number;
+    set first_name(value) {
+        this.#first_name = value;
+    }
+
+    get last_name() {
+        return this.#last_name;
+    }
+
+    set last_name(value) {
+        this.#last_name = value;
     }
 
     get isVerified() {
@@ -70,7 +52,7 @@ class AuthModel extends BaseModel {
     }
 
     toString() {
-        return `Email : ${this.#email},\nName : ${this.#name}\nVerified : ${this.#verified}`;
+        return `Email : ${this.#email},\nFirst Name : ${this.#first_name},\nLast Name : ${this.#last_name},\nVerified : ${this.#verified}`;
     }
 }
 

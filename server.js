@@ -5,13 +5,13 @@ const WebVariables = require("./src/client/dictionary/web/WebVariables");
 const SessionVariables = require("./src/client/dictionary/web/SessionVariables");
 const Routes = require("./src/client/dictionary/web/Routes")
 const FirebaseFlag = require("./src/client/flag/FirebaseFlag");
-const FirebaseConfig = require("./src/client/config/FirebaseConfig");
+const FirebaseConfig = require("./src/client/config/firebase/FirebaseConfig");
 const AuthModel = require("./src/client/model/AuthModel");
 const CollectionModel = require("./src/client/model/CollectionModel");
-const AuthController = require("./src/client/controller/AuthController");
+const AuthController = require("./src/client/controller/users/DatabaseController");
 const StringGenerator = require("./src/client/helper/generator/StringGenerator");
 const UsersReference = require("./src/client/dictionary/database/reference/Users");
-const CollectionController = require("./src/client/controller/CollectionController");
+const CollectionController = require("./src/client/controller/collections/CollectionController");
 // Api
 const ApiRouter = require("./src/api/router/ApiRouter");
 const cors = require("cors");

@@ -1,49 +1,53 @@
-const BASE_PATH = require("../../../BasePath");
+const BASE_PATH = require("../../../../BasePath");
 const Routes = require(`${BASE_PATH}/src/client/dictionary/web/Routes`);
 const AuthModel = require(`${BASE_PATH}/src/client/model/AuthModel`);
 const References = require(`${BASE_PATH}/src/client/dictionary/database/References`);
-const { getDatabase, ref, get } = require("firebase/database");
+const { getDatabase, ref, child, get } = require("firebase/database");
 const SessionUtility = require(`${BASE_PATH}/src/client/utility/web/SessionUtility`);
 const SessionVariables = require(`${BASE_PATH}/src/client/dictionary/web/SessionVariables`);
+const AuthenticationConfig = require(`${BASE_PATH}/src/client/config/firebase/AuthenticationConfig`);
 
-class AuthController {
+class DatabaseController {
 
+    // async read(request, response) {
+    //     let uid = AuthenticationConfig.getUser().UID;
+    //     let authModel = undefined;
+    //
+    //     let reference = ref(getDatabase(), References.AUTH);
+    //     let childRef = child(reference, uid);
+    //     await get(childRef).then((snapshot) => {
+    //         if (snapshot.exists()) {
+    //             authModel = new AuthModel();
+    //             authModel.email = snapshot.val().email;
+    //             authModel.password = snapshot.val().password;
+    //             authModel.first_name = snapshot.val().first_name;
+    //             authModel.last_name = snapshot.val().last_name;
+    //         }
+    //     });
+    //
+    //     return authModel;
+    // }
+
+    // Deprecated (will be using async ones later)
     read(request, response, model) {
         let found = false;
 
         if (model instanceof AuthModel) {
-            console.log("Email : " + model.getEmail);
-            console.log("Password : " + model.getPassword);
-            console.log("Retrieving Database");
             let database = getDatabase();
-            console.log("Retrieved Database, Initializing Reference");
             let reference = ref(database, References.AUTH);
-            console.log("Initialized Reference, Getting First Snapshot");
             get(reference).then((snapshot) => {
-                console.log("Snapshot Gotten, Iterating Snapshots");
                 snapshot.forEach((dataSnapshot) => {
-                    console.log("---Child Snapshot Information---");
-                    console.log("Key : " + dataSnapshot.key);
-                    console.log("---Getting Values---");
                     let email = dataSnapshot.val().email;
                     let password = dataSnapshot.val().password;
 
-                    console.log("Found Email : " + email);
-                    console.log("Found Password : " + password);
-
                     if (email === model.getEmail) {
                         found = true;
-                        console.log("Email Found, Checking Password");
                         if (password === model.getPassword) {
-                            console.log("Password Is Equal, Storing To Session");
-
                             request.session[SessionVariables.AUTH_MODEL] = dataSnapshot.val();
                             request.session[SessionVariables.AUTH_MODEL][SessionVariables.UID] = dataSnapshot.key;
                             request.session.save();
-                            console.log("Saved To Session, Redirecting To Home");
                             response.redirect(Routes.HOME);
                         } else {
-                            console.log("Credentials Incorrect!!!");
                             response.redirect(Routes.LOGIN);
                         }
 
@@ -63,4 +67,4 @@ class AuthController {
 
 }
 
-module.exports = AuthController;
+module.exports = DatabaseController;
