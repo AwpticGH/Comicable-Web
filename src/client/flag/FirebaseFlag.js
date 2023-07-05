@@ -1,5 +1,5 @@
 const BASE_PATH = require("../../../BasePath");
-const FirebaseConfig = require(`${BASE_PATH}/src/client/config/FirebaseConfig`);
+const FirebaseConfig = require(`${BASE_PATH}/src/client/config/firebase/FirebaseConfig`);
 
 
 class FirebaseFlag {

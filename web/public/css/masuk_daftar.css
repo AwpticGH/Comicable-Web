@@ -3,7 +3,7 @@
 }
 
 /* masuk dan daftar*/
-form {
+.konten form {
   min-height: 500px;
   width: 400px;
   margin: 100px 0 15px 0;
@@ -16,32 +16,33 @@ form {
   transform: translateX(-50%);
 
 }
-form input, form button{
+.konten form input, .konten form button{
   width: 320px;
   height: 44px;
   margin: 10px 0 0 0;
   border-radius: 4px;
 }
-form button{
+
+.konten form button{
   background-color: #2196F3;
   /* box-shadow: 0 3px 6px #2095F2; */
   border: 0;
   margin: 10px;
 }
-form button{
+.konten form button{
   color: #fff;
   text-decoration: none;
   font-weight: bold;
   font-size: 14px;
   margin: 20px;
 }
-form button:hover{
+.konten form button:hover{
   cursor:pointer;
   background-color: rgb(56, 156, 238);
 }
 
 @media screen and (max-width: 400px) {
-  form input, form button{
+  .konten form input, .konten form button{
     width: 90%;
     height: 44px;
     margin: 10px 0 0 0;

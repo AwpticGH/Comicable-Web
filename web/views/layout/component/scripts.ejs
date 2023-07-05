@@ -2,11 +2,14 @@
 <script src="/js/loading.js" type="application/javascript"></script>
 <script src="/js/navbar.js" type="application/javascript"></script>
 <script src="/js/modalBox.js" type="application/javascript"></script>
-<script src="/js/slider.js" type="application/javascript"></script>
-<script src="/js/dark-mode.js" type="application/javascript">
-<!--  /js/lebihBanyak.js untuk file /views/index  -->
-<!--  /js/slider.js untuk file /views/index  -->
-<script src="/js/lebihBanyak.js" type="application/javascript"></script>
-<script src="/js/controller/home.js" type="application/javascript"></script>
-<script src="/js/controller/auth/update.js" type="application/javascript"></script>
-<script src="/js/controller/auth/logout.js" type="application/javascript"></script>
+<script src="/js/dark-mode.js" type="application/javascript"></script>
+<!-- /views/index.ejs -->
+<% if (page_title === "Home") { %>
+<script src="/js/index/latest.js" type="application/javascript"></script>
+<script src="/js/index/mirror.js" type="application/javascript"></script>
+<script src="/js/index/trending.js" type="application/javascript"></script>
+<% } %>
+<!-- -->
+<script src="/js/legacy/controller/home.js" type="application/javascript"></script>
+<script src="/js/legacy/controller/auth/update.js" type="application/javascript"></script>
+<script src="/js/legacy/controller/auth/logout.js" type="application/javascript"></script>

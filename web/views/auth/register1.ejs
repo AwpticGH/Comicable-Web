@@ -1,9 +1,9 @@
 <!-- conten -->
 <div class="konten">
-    <form id="formEmail">
+    <form id="formEmail" action="<%= Routes.REGISTER_2 %>" method="get">
         <h1>DAFTAR</h1> <br>
-        <input onkeyup="validasi();" type="email" placeholder="Masukkan email anda..." id="myemail" name="email"><br>
+        <input onkeyup="validasi();" type="email" placeholder="Masukkan email anda..." id="myemail" name="<%= WebVariables.EMAIL %>"><br>
         <p style="display:none;color:red;" id="email">*masukan email</p>
-        <button id="submit" onclick="lanjut();">Lanjutkan</button>
+        <button id="submit">Lanjutkan</button>
     </form>
 </div>

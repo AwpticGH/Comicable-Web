@@ -1,17 +1,17 @@
 // Note : read nya udh ada di create.js
 
-// let comic = document.getElementById("comic-title").innerText;
+// let series = document.getElementById("series-title").innerText;
 // let comicId;
 // let userId;
 //
-// console.log(comic);
+// console.log(series);
 //
-// reference.child("comics").orderByChild("title").equalTo(comic).once("value").then("value", (snapshot) => {
+// reference.child("comics").orderByChild("title").equalTo(series).once("value").then("value", (snapshot) => {
 //     snapshot.forEach((dataSnapshot) => {
 //         let value = dataSnapshot.val().title;
 //         console.log("value : " + value);
 //
-//         if (value === comic) {
+//         if (value === series) {
 //             comicId = dataSnapshot.key;
 //             console.log("comicId : " + comicId);
 //         }
@@ -33,9 +33,9 @@
 //                 reference.child("collections").orderByChild("user").equalTo("userId").once("value").then("value", (snapshot) => {
 //                     snapshot.forEach((dataSnapshot) => {
 //                         let value1 = dataSnapshot.val().user;
-//                         let value2 = dataSnapshot.val().comic;
+//                         let value2 = dataSnapshot.val().series;
 //
-//                         if (isEqual(value1, userId) && isEqual(value2, comic)) {
+//                         if (isEqual(value1, userId) && isEqual(value2, series)) {
 //                             disableButton();
 //                         }
 //                     });

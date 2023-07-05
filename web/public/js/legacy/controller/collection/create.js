@@ -1,6 +1,6 @@
 function createData() {
-    let comic = document.getElementById("comic-title").innerText;
-    console.log("comic : " + comic);
+    let comic = document.getElementById("series-title").innerText;
+    console.log("series : " + comic);
     let userId;
     let comicId;
     let email = sessionStorage.getItem("UserEmail");

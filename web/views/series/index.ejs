@@ -1,0 +1,57 @@
+<!-- konten -->
+<section class="ini-isi">
+    <div class="d-kiri">
+        <div class="a">
+            <!-- gawe cover komik e -->
+            <div class="a1">
+                <div class="aa1">
+                    <img src="<%= api_data.detail.thumbnail %>" alt="">
+                    <!-- cover komik -->
+                </div>
+            </div>
+            <div class="a2">
+                <div class="dul">
+                    <p id="comic-title"><%= api_data.detail.title %></p>
+                </div>
+                <!-- gawe judul komik dll -->
+                <div class="par">
+                    <p><%= api_data.detail.alternative %></p>
+                    <p><%= api_data.detail.type %></p>
+                    <p><%= `${api_data.detail.rating} (${api_data.detail.rank})` %></p>
+                    <p><%= api_data.detail.author %></p>
+                    <p><%= api_data.detail.artist %></p>
+                    <p><%= api_data.detail.genres %></p>
+                    <p><%= api_data.detail.release %></p>
+                    <p><%= api_data.detail.status %></p>
+                </div>
+                <a class="btn-beli" href="#">
+                    Lanjut Membaca
+                </a>
+            </div>
+        </div>
+
+        <div class="b">
+            <div class="isi-b">
+                <h3>Deskripsi</h3>
+                <p><%= api_data.detail.synopsis %></p>
+            </div>
+        </div>
+
+        <div class="c">
+            <!-- gawe tulisan chapter e-->
+            <h3>Chapters</h3>
+            <%
+            let length = api_data.chapters.length;
+            for (let i = 0; i < length; i++) {
+            %>
+                <div class="cc">
+                    <a href="<%= api_data.chapters[i].endpoint %>">
+                        <p><%= api_data.chapters[i].name %></p>
+                    </a>
+                </div>
+            <% } %>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+</section>

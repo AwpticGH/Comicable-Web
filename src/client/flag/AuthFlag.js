@@ -1,14 +1,16 @@
 const BASE_PATH = require("../../../BasePath");
+const AuthenticationConfig = require("../config/firebase/AuthenticationConfig");
 const SessionVariables = require(`${BASE_PATH}/src/client/dictionary/web/SessionVariables`);
 const UsersReference = require(`${BASE_PATH}/src/client/dictionary/database/reference/Users`);
 
 class AuthFlag {
-    static isAuthenticated(session) {
-        return session[SessionVariables.AUTH_MODEL];
+
+    static isAuthenticated() {
+        return AuthenticationConfig.getCurrentUser() !== null;
     }
 
-    static isVerified(session) {
-        return this.isAuthenticated(session) && session[SessionVariables.AUTH_MODEL][UsersReference.VERIFIED] === 1;
+    static isVerified(request) {
+        return this.isAuthenticated() && request.session[SessionVariables.AUTH_MODEL][UsersReference.VERIFIED] === true;
     }
 }
 

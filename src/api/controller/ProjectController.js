@@ -11,7 +11,7 @@ const ResponseMessages = require("../dictionary/ResponseMessages");
 class ProjectController {
     static async get(request) {
         const page = request.params["page"];
-        const url = page < 2 ? "/project" : `/project/page/${page}`;
+        const url = page < 2 || page === undefined ? "/project" : `/project/page/${page}`;
         const responseModel = new ResponseModel();
 
         try {

@@ -1,0 +1,36 @@
+<!-- KONTEN -->
+
+<div class="konten">
+    <h3>Project</h3>
+    <div class="atas">
+        <div class="pagination">
+            <p>Halaman</p>
+            <%
+            let length = api_data.pagination.length;
+            for (let i = 0; i < length; i++) {
+            %>
+                <a href="<%= api_data.pagination[i].endpoint %>"><%= api_data.pagination[i].name %></>
+            <% } %>
+        </div>
+    </div>
+    <div class="isi">
+        <%
+        length = api_data.projects.length;
+        for (let i = 0; i < length; i++) {
+        %>
+            <div class="cover1">
+                <div>
+                    <a href="<%= api_data.projects[i].series %>">
+                        <img src="<%= api_data.projects[i].thumbnail %>" alt="cover">
+                        <div class="text-container">
+                            <p class="judul"><%= api_data.projects[i].title %></p>
+                            <p class="episode"><%= api_data.projects[i].chapter.name %></p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        <% } %>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>

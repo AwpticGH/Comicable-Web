@@ -1,0 +1,103 @@
+<!-- KONTEN -->
+
+<div class="konten">
+    <h3>Search</h3>
+    <div class="atas">
+        <div class="pagination">
+            <p>Halaman</p>
+            <%
+            let length = api_data.pagination.length;
+            for (let i = 0; i < length; i++) {
+                let endpoint = api_data.pagination[i].endpoint;
+                let page = endpoint.substring(endpoint.lastIndexOf("/") + 1);
+            %>
+                <a href="<%= `${Routes.SEARCH}?query=${search_query}&page=${page}` %>"><%= api_data.pagination[i].name %></a>
+            <% } %>
+        </div>
+    </div>
+    <div class="isi">
+        <%
+        length = api_data.searches.length;
+        for (let i = 0; i < length; i++) {
+        %>
+            <div class="row">
+                <div class="column">
+                    <div class="card">
+                        <a href="<%= api_data.searches[i].endpoint %>">
+                            <img src="<%= api_data.searches[i].thumbnail %>" alt="cover" sizes="20%">
+                        </a>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card">
+                        <a href="<%= api_data.searches[i].endpoint %>">
+                            <p class="judul"><%= api_data.searches[i].title %></p>
+                        </a>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card">
+                        <p class="episode"><%= api_data.searches[i].rating %></p>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card">
+                        <p><%= api_data.searches[i].release %></p>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+
+<!--            <div class="column">-->
+<!--                <div class="card">-->
+<!--                    <a href="<%= Routes.COMIC_DETAIL_DUMMY %>">-->
+<!--                        <img src="/img/si juki-keroyokan77.jpg" alt="cover" sizes="20%">-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="column">-->
+<!--                <div class="card">-->
+<!--                    <p class="judul">Si Juki</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="column">-->
+<!--                <div class="card">-->
+<!--                    <a href="<%= Routes.CHAPER_DUMMY %>">-->
+<!--                        <p class="episode">Episode 179</p>-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="column">-->
+<!--                <div class="card">-->
+<!--                    <p>1 menit yang lalu</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="row">-->
+<!--            <div class="column">-->
+<!--                <div class="card">-->
+<!--                    <a href="<%= Routes.COMIC_DETAIL_DUMMY %>">-->
+<!--                        <img src="/img/dalang pelo77.jpg" alt="cover" sizes="20%">-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="column">-->
+<!--                <div class="card">-->
+<!--                    <p class="judul">Dalang Pelo</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="column">-->
+<!--                <div class="card">-->
+<!--                    <a href="<%= Routes.CHAPER_DUMMY %>">-->
+<!--                        <p class="episode">Episode 17</p>-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="column">-->
+<!--                <div class="card">-->
+<!--                    <p>11 menit yang lalu</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+    </div>
+</div>

@@ -1,3 +1,14 @@
+<%
+let alert = request.session[WebVariables.ALERT];
+if (alert !== undefined) {
+%>
+    <script>
+        alert("<%= alert %>");
+    </script>
+<%
+    request.session[WebVariables.ALERT] = undefined;
+}
+%>
 <nav class="topnav" id="myTopnav">
     <ul>
         <div class="kiri">
@@ -7,64 +18,60 @@
             <li>
                 <a href="<%= Routes.HOME %>"><img class="logo" src="/img/BACA%20KOMIK%20ICON.png" alt=""></a>
             </li>
-            <li><a class="respon" href="<%= Routes.HOME %>" class="active">BERANDA</a> </li>
-            <li><a class="respon" href="<%= Routes.COMICS_ALL %>">SEMUA KOMIK</a> </li>
-            <li><a class="respon" href="<%= Routes.COMICS_NEWEST %>">TERBARU</a></li>
+            <li><a class="respon" href="<%= Routes.HOME %>">Home</a> </li>
+            <li><a class="respon" href="<%= Routes.PROJECT %>">Project</a> </li>
         </div>
-        <% if (!AuthFlag.isAuthenticated(request.session)) { %>
-            <div class="kanan">
+        <div class="kanan">
+            <form action="<%= Routes.SEARCH %>" method="get">
                 <li>
-                    <a href="javascript:void(0);" class="icon" onclick="find()">
-                        <i class="fa fa-search" aria-hidden="true"></i>
-                    </a>
+                    <input class="respon" type="text" name="<%= WebVariables.SEARCH_QUERY %>" id="<%= WebVariables.SEARCH_QUERY %>" placeholder="Cari">
                 </li>
-                <li> <input class="respon" type="text" name="search" id="search" placeholder="Cari"> </li>
-                <ul class="list-group" id="result"></ul>
+                <button type="submit">Cari</button>
+            </form>
+<!--            <li>-->
+<!--                <a href="javascript:void(0);" class="icon" onclick="find()">-->
+<!--                    <i class="fa fa-search"></i>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--            <ul class="list-group" id="result"></ul>-->
+            <% if (!AuthFlag.isAuthenticated()) { %>
                 <a href="<%= Routes.LOGIN %>">Masuk</a>
-            </div>
+            <%
+            } else {
+                const authModel = request.session[SessionVariables.AUTH_MODEL];
+            %>
+                <i style="margin-top:10px; color:#2095F2;" class="fa fa-user-circle fa-3x" aria-hidden="true"></i>
+                <i class="fa fa-caret-down" aria-hidden="true" style="color:#2095F2;"></i>
+                <ul id="dropdown" style="display:none">
+                    <li>
+                        <a href="#" class="biru size18">
+                            <%= AuthenticationConfig.getCurrentUser().displayName %>
+                        </a>
+                    </li> <br>
+                    <li onclick="verif();">
+                        <a class="hijau size14" href="javascript:void(0);">
+                            <%= AuthFlag.isVerified(request) ? "Terverifikasi" : "Belum Terverifikasi" %>
+                        </a>
+                    </li> <br>
+                    <li><a href="#" style="color:black; cursor:default;">Komik</a></li> <br>
+                    <li><a class="abu" href="<%= Routes.COLLECTION %>">Koleksi</a></li> <br>
+                    <li><a class="abu" href="<%= Routes.COLLECTION_DUMMY %>">Koleksi Dummy</a></li> <br>
+                    <li class="garis" onclick="profil();"><a href="javascript:void(0);" aria-disabled="<%= AuthFlag.isVerified(request) ? "true" : "false" %>">Edit Profil</a></li> <br>
+                    <li ><a class="merah" href="<%= Routes.LOGOUT %>">Logout</a></li>
+                </ul>
             <% } %>
-                <%
-        if (AuthFlag.isAuthenticated(request.session)) {
-            const AuthModel = request.session.AuthModel;
-        %>
-                    <div class="kanan">
-                        <li>
-                            <a href="javascript:void(0);" class="icon" onclick="find()"> <i class="fa fa-search" aria-hidden="true"></i> </a>
-                        </li>
-                        <i style="margin-top:10px; color:#2095F2;" class="fa fa-user-circle fa-3x" aria-hidden="true"></i>
-                        <i class="fa fa-caret-down" aria-hidden="true" style="color:#2095F2;"></i>
-                        <li> <input class="respon" type="text" placeholder="   Cari"> </li>
-                        <ul id="dropdown" style="display:none">
-                            <li>
-                                <a href="#" class="biru size18">
-                                    <%= "a" + AuthModel[UsersReference.EMAIL] %>
-                                </a>
-                            </li> <br>
-                            <li onclick="verif();">
-                                <a class="hijau size14" href="javascript:void(0);">
-                                    <%= AuthFlag.isVerified(request.session) ? "Terverifikasi" : "Belum Terverifikasi" %>
-                                </a>
-                            </li> <br>
-                            <li><a href="#" style="color:black; cursor:default;">Komik</a></li> <br>
-                            <li><a class="abu" href="<%= Routes.COLLECTION_DUMMY %>">Koleksi</a></li> <br>
-                            <li><a class="abu" href="<%= Routes.COLLECTION_BOUGHT_DUMMY %>">Terbeli</a></li> <br>
-                            <li class="garis" onclick="profil();"><a href="javascript:void(0);" aria-disabled="<%= AuthFlag.isVerified(request.session) ? " true " : "false " %>">Edit Profil</a></li> <br>
-                            <li onclick="logout()"><a class="merah" href="javascript:void(0);">Logout</a></li>
-                        </ul>
-                    </div>
-                    <% } %>
-                        <div class="clear"></div>
-                        <div id="bar" style="display:none;" class="bar">
-                            <a class="respon" href="<%= Routes.HOME %>" class="active">BERANDA</a>
-                            <a class="respon" href="<%= Routes.COMICS_ALL %>">SEMUA KOMIK</a>
-                            <a class="respon" href="<%= Routes.COMICS_NEWEST %>">TERBARU</a>
-                        </div>
-                        <div id="find" style="display:none;" class="bar">
-                            <input class="respon" type="text" placeholder="   Cari">
-                        </div>
+        </div>
+        <div class="clear"></div>
+        <div id="bar" style="display:none;" class="bar">
+            <a class="respon" href="<%= Routes.HOME %>">Beranda</a>
+            <a class="respon" href="<%= Routes.PROJECT %>">Project</a>
+        </div>
+        <div id="find" style="display:none;" class="bar">
+            <input class="respon" type="text" placeholder="   Cari">
+        </div>
     </ul>
 </nav>
-<% if (AuthFlag.isAuthenticated(request.session)) { %>
+<% if (AuthFlag.isAuthenticated(request)) { %>
     <!-- modal box -->
     <div class="content">
         <div class="header">
@@ -136,4 +143,4 @@
             </form>
         </div>
     </div>
-    <% } %>
+<% } %>

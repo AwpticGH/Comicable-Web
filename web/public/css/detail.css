@@ -1,20 +1,7 @@
-.g{
-    width: 100%;
-    /* border: 2px solid saddlebrown; */
-    align-content: center;
-    position: relative;
-    z-index: 1;
-    /* height:500px;
-    background-image: url("../img/koveropm.png"); */
-}
-.g img{
-    width: 100%;
-}
-
 .ini-isi{
     width: 100%;
-    margin: 20px 0 20px 0;
-    /* border: 2px solid seagreen; */
+    margin: 6rem 0 20px 0;
+    /*border: 2px solid seagreen;*/
 }
 
 .d-kiri{
@@ -27,7 +14,6 @@
 .a{
     /* border: 2px solid red; */
     width: 100%;
-    margin: -150px 0 0 0;
     background-color: var(--theme-color);
     box-shadow: 0 0 5px grey;
 }
@@ -35,7 +21,7 @@
 .a1{
     position: relative;
     z-index: 2;
-    /* border: 2px solid black; */
+     /*border: 2px solid black;*/
     width: 280px;
     display: inline-block;
     background-color: var(--theme-color);
@@ -52,11 +38,9 @@
 
 .a2{
     position: relative;
-    bottom: 50px;
-    width: 200px;
-    /* border: 2px solid blueviolet; */
+    width: 70%;
+    /*border: 2px solid blueviolet;*/
     display: inline-block;
-
 }
 
 .dul{
@@ -65,8 +49,8 @@
 }
 
 .par{
-    margin-top: 10px;
-    margin-bottom: 35px
+    margin-top: 20px;
+    margin-bottom: 35px;
 }
 
 .a2 a {
@@ -92,7 +76,7 @@
     padding: 10px;
 }
 
-.b h3{
+.b h3, .b p {
     margin: 20px 0 0 20px
 }
 

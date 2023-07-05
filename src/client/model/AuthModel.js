@@ -1,6 +1,7 @@
 const BaseModel = require("./BaseModel");
 
 class AuthModel extends BaseModel {
+    #uid;
     #email;
     #password;
     #first_name;
@@ -11,20 +12,28 @@ class AuthModel extends BaseModel {
         super();
     }
 
-    get getEmail() {
+    get uid() {
+        return this.#uid;
+    }
+
+    set uid(value) {
+        this.#uid = value;
+    }
+
+    get email() {
         return this.#email;
     }
 
-    set setEmail(email) {
-        this.#email = email;
+    set email(value) {
+        this.#email = value;
     }
 
-    get getPassword() {
+    get password() {
         return this.#password;
     }
 
-    set setPassword(password) {
-        this.#password = password;
+    set password(value) {
+        this.#password = value;
     }
 
     get first_name() {
@@ -43,16 +52,27 @@ class AuthModel extends BaseModel {
         this.#last_name = value;
     }
 
-    get isVerified() {
-        return this.#verified === "1";
+    get verified() {
+        return this.#verified;
     }
 
-    set setVerified(verified) {
-        this.#verified = verified;
+    set verified(value) {
+        this.#verified = value;
     }
 
     toString() {
         return `Email : ${this.#email},\nFirst Name : ${this.#first_name},\nLast Name : ${this.#last_name},\nVerified : ${this.#verified}`;
+    }
+
+    toJSON() {
+        return {
+            uid: this.uid,
+            email: this.email,
+            password: this.password,
+            first_name: this.first_name,
+            last_name: this.last_name,
+            verified: this.verified
+        }
     }
 }
 

@@ -12,16 +12,23 @@
   background-color: var(--atas);
   width: 100%;
   text-align: right;
+  padding-top: 15px;
 }
 
-  .atas p{
+.atas p{
   display: inline;
-  margin: 10px 10px;
-  }
+  color: white;
+}
 
-  .atas select{
-    margin: 20px;
-  }
+.atas .pagination p {
+  margin: 0 20px 0 0;
+}
+
+.atas .pagination a {
+  margin: 20px 25px 20px -5px;
+  text-decoration: none;
+  color: white;
+}
 
 .isi{
   width: 100%;
@@ -45,8 +52,9 @@
   width: 25%;
   height: 100%;
 }
+
 .row {
-  padding: auto 0;
+  padding: 0;
   height: 100%;
   margin: 0;
 }
@@ -62,23 +70,6 @@
   text-align: center;
 }
 
-.btn-banyak{
-  padding: 10px;
-  width: 100%;
-  text-align: center;
+.card a {
+  text-decoration: none;
 }
-
-  .btn-banyak a{
-    text-decoration: none;
-    font-weight: bold;
-    color: #2095F2;
-  }
-
-  .btn-banyak i{
-    color: #2095F2;
-  }
-
-  .btn-banyak:hover{
-    background-color: var(--hovv);
-    cursor: pointer;
-  }

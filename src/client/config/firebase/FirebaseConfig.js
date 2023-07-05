@@ -14,7 +14,7 @@ class FirebaseConfig {
 
     static init() {
         // Initialize Firebase
-        firebaseApp.initializeApp(this.#firebaseConfig);
+        return firebaseApp.initializeApp(this.#firebaseConfig);
     }
 
     static getFirebase() {
