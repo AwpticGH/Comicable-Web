@@ -51,15 +51,13 @@ class DatabaseController {
 
     async update(model) {
         let result = false;
-        if (model instanceof AuthModel) {
-            try {
-                await update(child(ref(getDatabase(), References.AUTH), model.uid), model)
-                    .then(() => {
-                        result = true;
-                    });
-            } catch (error) {
-                console.log(error);
-            }
+        try {
+            await update(child(ref(getDatabase(), References.AUTH), model.uid), model)
+                .then(() => {
+                    result = true;
+                });
+        } catch (error) {
+            console.log(error);
         }
 
         return result;
