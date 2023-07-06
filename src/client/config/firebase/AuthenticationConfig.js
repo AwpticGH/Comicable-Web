@@ -12,10 +12,6 @@ class AuthenticationConfig {
     static getCurrentUser() {
         return this.getAuthentication().currentUser;
     }
-
-    static hasDisplayName() {
-        return this.getCurrentUser().displayName !== undefined;
-    }
 }
 
 module.exports = AuthenticationConfig;

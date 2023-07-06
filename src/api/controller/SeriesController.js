@@ -9,7 +9,12 @@ const ResponseMessages = require("../dictionary/ResponseMessages");
 
 class SeriesController {
     static async get(request) {
-        const series = request.params["series"];
+        let series;
+        if (typeof request == "object") {
+            series = request.params["series"];
+        } else {
+            series = request;
+        }
         const url = `/series/${series}`;
         let responseModel = new ResponseModel();
 
@@ -46,6 +51,10 @@ class SeriesController {
                         .find(".description-summary > .summary__content > p")
                         .text();
                     detailModel.thumbnail = $(el).find("img").attr("data-src");
+                    if (detailModel.thumbnail === undefined) {
+                        detailModel.thumbnail = $(el).find("img").attr("data-ngll-src");
+                    }
+                    console.log(`SeriesController.get().detailModel.thumbnail = ${detailModel.thumbnail}`);
                     let averageRating = $(el).find("#averagerate").text();
                     let totalRating = $(el).find("#countrate").text();
                     detailModel.rating = `Average ${averageRating} / 5 out of ${totalRating}`;
@@ -78,9 +87,8 @@ class SeriesController {
                 responseModel.message = ResponseMessages.FAIL;
             }
         }
-        finally {
-            return responseModel.toJSON();
-        }
+
+        return responseModel.toJSON();
     }
 }
 

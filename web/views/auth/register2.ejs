@@ -1,12 +1,24 @@
 <!-- conten -->
 <div class="konten">
-    <form id="submitForm" action="<%= Routes.REGISTER_2 %>" method="post">
+    <form id="register-form" action="<%= Routes.REGISTER_2 %>" method="post">
         <h1>DAFTAR</h1><br>
-        <input type="hidden" name="<%= WebVariables.EMAIL %>" value="<%= locals[WebVariables.EMAIL] %>" />
+        <%
+        let email, firstName, lastName;
+        if (request.session[SessionVariables.INPUT_EMAIL] !== undefined) {
+            email = request.session[SessionVariables.INPUT_EMAIL];
+        }
+        if (request.session[SessionVariables.INPUT_FIRST_NAME] !== undefined) {
+            firstName = request.session[SessionVariables.INPUT_FIRST_NAME];
+        }
+        if (request.session[SessionVariables.INPUT_LAST_NAME] !== undefined) {
+            lastName = request.session[SessionVariables.INPUT_LAST_NAME];
+        }
+        %>
+        <input type="hidden" name="<%= WebVariables.EMAIL %>" value="<%= email === undefined ? locals[WebVariables.EMAIL] : email %>" />
         <input onkeyup="validasi();" type="password" name="<%= WebVariables.PASSWORD %>" placeholder="Masukkan kata sandi" id="pass" autocomplete="true"><br>
         <input onkeyup="validasi2();" type="password" name="<%= WebVariables.PASSWORD_CONFIRMATION %>" id="pass2" placeholder="Konfirmasi kata sandi" autocomplete="true"><br>
-        <input type="text" name="<%= WebVariables.FIRST_NAME %>" placeholder="Nama depan" required/>
-        <input type="text" name="<%= WebVariables.LAST_NAME %>" placeholder="Nama belakang" required/>
+        <input type="text" name="<%= WebVariables.FIRST_NAME %>" placeholder="Nama depan" value="<%= firstName === undefined ? "" : firstName %>" required/>
+        <input type="text" name="<%= WebVariables.LAST_NAME %>" placeholder="Nama belakang" value="<%= lastName === undefined ? "" : lastName %>" required/>
         <p style="display:none;color:red;" id="samain">*konfirmasi password tidak sama</p>
         <p style="display:none;color:red;" id="panjangPendek">*password panjangnya harus 5 sampai 12 karakter</p>
         <p style="display:none;color:red;" id="kKecil">*password harus memiliki 1 karakter huruf kecil</p>

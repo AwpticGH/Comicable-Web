@@ -1,12 +1,12 @@
 <%
-let alert = request.session[WebVariables.ALERT];
+let alert = request.session[SessionVariables.ALERT];
 if (alert !== undefined) {
 %>
     <script>
         alert("<%= alert %>");
     </script>
 <%
-    request.session[WebVariables.ALERT] = undefined;
+    request.session[SessionVariables.ALERT] = undefined;
 }
 %>
 <nav class="topnav" id="myTopnav">
@@ -34,30 +34,32 @@ if (alert !== undefined) {
 <!--                </a>-->
 <!--            </li>-->
 <!--            <ul class="list-group" id="result"></ul>-->
-            <% if (!AuthFlag.isAuthenticated()) { %>
+            <%
+            let authModel = undefined;
+            if (!AuthenticationFlag.isAuthenticated()) {
+            %>
                 <a href="<%= Routes.LOGIN %>">Masuk</a>
             <%
             } else {
-                const authModel = request.session[SessionVariables.AUTH_MODEL];
+                authModel = request.session[SessionVariables.AUTH_MODEL];
             %>
                 <i style="margin-top:10px; color:#2095F2;" class="fa fa-user-circle fa-3x" aria-hidden="true"></i>
                 <i class="fa fa-caret-down" aria-hidden="true" style="color:#2095F2;"></i>
                 <ul id="dropdown" style="display:none">
                     <li>
                         <a href="#" class="biru size18">
-                            <%= AuthenticationConfig.getCurrentUser().displayName %>
+                            <%= authModel.first_name %>
                         </a>
                     </li> <br>
                     <li onclick="verif();">
                         <a class="hijau size14" href="javascript:void(0);">
-                            <%= AuthFlag.isVerified(request) ? "Terverifikasi" : "Belum Terverifikasi" %>
+                            <%= AuthenticationFlag.isVerified(request) ? "Terverifikasi" : "Belum Terverifikasi" %>
                         </a>
                     </li> <br>
                     <li><a href="#" style="color:black; cursor:default;">Komik</a></li> <br>
                     <li><a class="abu" href="<%= Routes.COLLECTION %>">Koleksi</a></li> <br>
-                    <li><a class="abu" href="<%= Routes.COLLECTION_DUMMY %>">Koleksi Dummy</a></li> <br>
-                    <li class="garis" onclick="profil();"><a href="javascript:void(0);" aria-disabled="<%= AuthFlag.isVerified(request) ? "true" : "false" %>">Edit Profil</a></li> <br>
-                    <li ><a class="merah" href="<%= Routes.LOGOUT %>">Logout</a></li>
+                    <li class="garis" onclick="profil();"><a href="javascript:void(0);" aria-disabled="<%= AuthenticationFlag.isVerified(request) ? "true" : "false" %>">Edit Profil</a></li> <br>
+                    <li ><a class="merah" href="#confirm-logout" onclick="confirmLogout()">Logout</a></li>
                 </ul>
             <% } %>
         </div>
@@ -71,18 +73,8 @@ if (alert !== undefined) {
         </div>
     </ul>
 </nav>
-<% if (AuthFlag.isAuthenticated(request)) { %>
+<% if (AuthenticationFlag.isAuthenticated(request)) { %>
     <!-- modal box -->
-    <div class="content">
-        <div class="header">
-            <!-- <p>Data Tersimpan</p> -->
-            <label for="click" class="fas fa-times" onclick="closeverif();"></label>
-        </div>
-        <label for="click" class="fas fa-check"></label>
-        <p>selamat! Komik berhasil ditambahkan dan telah tersimpan.</p>
-        <div class="line"></div>
-        <label for="click" class="close-btn" onclick="closeverif();">Close</label>
-    </div>
 
     <div class="content2">
         <div class="header2">
@@ -99,18 +91,16 @@ if (alert !== undefined) {
     <div class="bg-modal" id="verif" style="display:none;">
         <div class="modal-konten">
             <div class="tutup" onclick="tutup();">+</div>
-            <h1>verifikasi identitas kreator</h1>
-            <form class="" action="/web/auth/index.html" method="post">
-                <input type="text" name="" id="" placeholder="nama lengkap"><br>
-                <input type="text" name="" id="" placeholder="no. Telepon/HP"><br>
-                <input type="text" name="" id="" placeholder="alamat"><br>
-                <input type="date" name="" id=""><br>
-                <label for="file" style="padding-top:10px;">foto selfie dengan ktp</label> <br>
-                <input class="fileSize2" type="file" name="file" accept="image/*" onchange="readURL_verifakun(this);"> <br>
-                <img id="blah2" src="http://placehold.it/180" alt="your image" /> <br>
-                <p id="size2">Ukuran file : </p>
+            <h1>Verifikasi Akun</h1>
+            <form id="form-verification" action="<%= Routes.HOME %>" method="get">
+                <br>
+                <div class="input-container">
+                    <p>
+                        Pastikan Email Anda Sudah Tepat Karena Kami Tidak Akan Bisa Mengirim Email Jika Email Yang Digunakan Salah!
+                    </p>
+                </div>
+                <button type="submit" name="button" onclick="alert('Coming Soon!')">Kirim Verifikasi</button>
             </form>
-            <button type="button" name="button" onclick="verifikasi();">verifikasi</button>
         </div>
     </div>
 
@@ -119,27 +109,40 @@ if (alert !== undefined) {
         <div class="modal-konten">
             <div class="tutup" onclick="tutup();">+</div>
             <h1>Edit Profil</h1>
-            <form class="" action="/web/auth/index.html" method="post">
-                <input type="text" name="<%= WebVariables.NAME %>" id="<%= WebVariables.NAME %>" placeholder="Nama Lengkap"><br>
-                <input type="text" name="<%= WebVariables.PHONE_NUMBER %>" id="<%= WebVariables.PHONE_NUMBER %>" placeholder="No. Telepon/HP"><br>
-                <input type="text" name="<%= WebVariables.ADDRESS %>" id="<%= WebVariables.ADDRESS %>" placeholder="Alamat"><br>
-                <input type="date" name="<%= WebVariables.DATE_OF_BIRTH %>" id="<%= WebVariables.DATE_OF_BIRTH %>" placeholder="Tanggal Lahir"><br>
-                <label for="file" style="padding-top:10px;">foto selfie dengan ktp</label> <br>
-                <input class="fileSize3" type="file" id="<%= WebVariables.NAME %>" name="<%= WebVariables.NAME %>" accept="image/*" onchange="readURL_editakun(this);"> <br>
-                <img id="blah3" src="http://placehold.it/180" alt="your image" /> <br>
-                <p id="size3">Ukuran file : </p>
+            <form id="form-update-user" action="<%= Routes.UPDATE_AUTH %>" method="post">
+                <br>
+                <div class="input-container">
+                    <label class="kiri" for="<%= WebVariables.EMAIL %>">Email</label><br>
+                    <input type="email" name="<%= WebVariables.EMAIL %>" id="<%= WebVariables.EMAIL %>" placeholder="Email" value="<%= authModel.email %>" required readonly><br>
+                </div>
+                <div class="input-container">
+                    <label class="kiri" for="<%= WebVariables.PASSWORD %>">Password</label><br>
+                    <input type="password" name="<%= WebVariables.PASSWORD %>" id="<%= WebVariables.PASSWORD %>" placeholder="Password" value="<%= authModel.password %>" required><br>
+                </div>
+                <div class="input-container">
+                    <label class="kiri" for="<%= WebVariables.FIRST_NAME %>">First Name (Display Name)</label><br>
+                    <input type="text" name="<%= WebVariables.FIRST_NAME %>" id="<%= WebVariables.FIRST_NAME %>" placeholder="Nama Depan" value="<%= authModel.first_name %>" required><br>
+                </div>
+                <div class="input-container">
+                    <label class="kiri" for="<%= WebVariables.LAST_NAME %>">Last Name</label><br>
+                    <input type="text" name="<%= WebVariables.LAST_NAME %>" id="<%= WebVariables.LAST_NAME %>" placeholder="Nama Depan" value="<%= authModel.last_name %>" required><br>
+                </div>
+<!--                <label for="file" style="padding-top:10px;">Foto Profil</label> <br>-->
+<!--                <input class="fileSize3" type="file" id="<%= WebVariables.NAME %>" name="<%= WebVariables.NAME %>" accept="image/*" onchange="readURL_editakun(this);"> <br>-->
+<!--                <img id="blah3" src="http://placehold.it/180" alt="your image" /> <br>-->
+<!--                <p id="size3">Ukuran file : </p>-->
+                <button type="submit" name="button">Update</button>
             </form>
-            <button type="button" name="button" onclick="verifikasi();">verifikasi</button>
         </div>
     </div>
     <!-- untuk peringatan keluar akun -->
-    <div class="bg-modal" id="keluarAkun" style="display:none;">
+    <div class="bg-modal" id="confirm-logout" style="display:none;">
         <div class="modal-konten" style="max-height: 150px;">
             <h1>yakin ingin keluar?</h1>
             <br>
-            <form action="<%= Routes.LOGOUT %>" method="post">
+            <form action="<%= Routes.LOGOUT %>" method="get">
                 <button type="button" name="button" onclick="tutup();">tidak</button>
-                <button type="submit" name="button" onclick="signout();">ya</button>
+                <button type="submit" name="button">ya</button>
             </form>
         </div>
     </div>

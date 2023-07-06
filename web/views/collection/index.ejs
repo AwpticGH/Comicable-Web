@@ -1,0 +1,26 @@
+<!-- KONTEN -->
+<div class="konten" onclick="closeDrop()">
+    <h3>Koleksi</h3>
+    <div class="atas">
+
+    </div>
+    <div class="isi">
+        <%
+        length = collections.length;
+        for (let i = 0; i < length; i++ ) {
+        %>
+        <div class="cover1">
+            <div>
+                <a href="<%= collections[i].endpoint %>">
+                    <img src="<%= responses[i].thumbnail %>" alt="cover">
+                    <div class="text-container">
+                        <p class="judul"><%= collections[i].title %></p>
+                        <p class="episode"><%= EndpointHelper.parseChapterEndpointAsChapter(checkpoints[i].endpoint) %></p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <% } %>
+    </div>
+    <div class="clear"></div>
+</div>

@@ -284,20 +284,21 @@ nav #find input{
   background-color: var(--bg-color);
 }
 
-.modal-konten >form>input, .modal-konten textarea{
+.modal-konten > form > .input-container {
+    width: 300px;
+    margin: 0 auto 20px auto;
+}
+
+.modal-konten > form > input, .modal-konten > form > .input-container > input, .modal-konten textarea{
   text-align: center;
   width: 300px;
   margin: 5px 0 5px 0;
   border-radius: 4px;
 }
-.modal-konten >form>input{
+.modal-konten > form > input, .modal-konten > form > .input-container > input {
   height: 40px;
 }
-.modal-konten >form>div{
-  text-align: left;
-  position: relative;
-  left:40%;
-}
+
 .modal-konten >form>img{
   max-height: 180px;
   max-width: 80%;
@@ -306,7 +307,7 @@ nav #find input{
   margin: 0;
   padding: 0;
 }
-.modal-konten >button{
+.modal-konten > form > button{
   position: relative;
   bottom: 10px;
 }

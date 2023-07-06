@@ -1,10 +1,9 @@
 const BaseModel = require("./BaseModel");
 
-class CollectionModel extends BaseModel {
+class CheckpointModel extends BaseModel {
     #uid;
-    #title;
+    #collection;
     #endpoint;
-    #user;
 
     constructor() {
         super();
@@ -18,12 +17,12 @@ class CollectionModel extends BaseModel {
         this.#uid = value;
     }
 
-    get title() {
-        return this.#title;
+    get collection() {
+        return this.#collection;
     }
 
-    set title(value) {
-        this.#title = value;
+    set collection(value) {
+        this.#collection = value;
     }
 
     get endpoint() {
@@ -34,22 +33,13 @@ class CollectionModel extends BaseModel {
         this.#endpoint = value;
     }
 
-    get user() {
-        return this.#user;
-    }
-
-    set user(value) {
-        this.#user = value;
-    }
-
     toJSON() {
         return {
             uid: this.uid,
-            title: this.title,
-            endpoint: this.endpoint,
-            user: this.user
+            collection: this.collection,
+            endpoint: this.endpoint
         }
     }
 }
 
-module.exports = CollectionModel;
+module.exports = CheckpointModel;

@@ -1,14 +1,17 @@
 class Routes {
+    // Landing Page
     static #HOME = "/";
-    static #ABOUT = "/about-us";
-    static #TERMS_OF_SERVICE = "/terms-of-service";
-    static #CUSTOMER_SUPPORT = "/customer-support";
+
+    // Auth
     static #LOGIN = "/auth/login";
     static #REGISTER_1 = "/auth/register-email";
     static #REGISTER_2 = "/auth/register-password";
     static #LOGOUT = "/auth/logout";
-    static #COLLECTION = "/collection:user_id";
-    static #COLLECTION_DUMMY = "/collection";
+    static #UPDATE_AUTH = "/auth/update"
+
+    // Comic API
+    static #COLLECTION = "/collection";
+    static #COLLECTION_DUMMY = "/collection/dummy";
     static #PROJECT = "/project"
     static #PROJECT_WITH_PAGE = "/project/page/:page";
     static #SEARCH = "/search"
@@ -17,20 +20,20 @@ class Routes {
     static #CHAPTER = "/series/:series/:chapter";
     static #CHAPTER_DUMMY = "/series/chapter/dummy";
 
+    // Comic CRUD
+    static #COLLECTION_CREATE = "/collection/create";
+    static #COLLECTION_DELETE = "/collection/delete";
+    static #CHECKPOINT_CREATE = "/checkpoint/create";
+    static #CHECKPOINT_UPDATE = "/checkpoint/update";
+    static #CHECKPOINT_DELETE = "/checkpoint/delete";
+
+    // Misc
+    static #ABOUT = "/about-us";
+    static #TERMS_OF_SERVICE = "/terms-of-service";
+    static #CUSTOMER_SUPPORT = "/customer-support";
+
     static get HOME() {
         return this.#HOME;
-    }
-
-    static get ABOUT() {
-        return this.#ABOUT;
-    }
-
-    static get TERMS_OF_SERVICE() {
-        return this.#TERMS_OF_SERVICE;
-    }
-
-    static get CUSTOMER_SUPPORT() {
-        return this.#CUSTOMER_SUPPORT;
     }
 
     static get LOGIN() {
@@ -47,6 +50,10 @@ class Routes {
 
     static get LOGOUT() {
         return this.#LOGOUT;
+    }
+
+    static get UPDATE_AUTH() {
+        return this.#UPDATE_AUTH;
     }
 
     static get COLLECTION() {
@@ -83,6 +90,38 @@ class Routes {
 
     static get CHAPTER_DUMMY() {
         return this.#CHAPTER_DUMMY;
+    }
+
+    static get COLLECTION_CREATE() {
+        return this.#COLLECTION_CREATE;
+    }
+
+    static get COLLECTION_DELETE() {
+        return this.#COLLECTION_DELETE;
+    }
+
+    static get CHECKPOINT_CREATE() {
+        return this.#CHECKPOINT_CREATE;
+    }
+
+    static get CHECKPOINT_UPDATE() {
+        return this.#CHECKPOINT_UPDATE;
+    }
+
+    static get CHECKPOINT_DELETE() {
+        return this.#CHECKPOINT_DELETE;
+    }
+
+    static get ABOUT() {
+        return this.#ABOUT;
+    }
+
+    static get TERMS_OF_SERVICE() {
+        return this.#TERMS_OF_SERVICE;
+    }
+
+    static get CUSTOMER_SUPPORT() {
+        return this.#CUSTOMER_SUPPORT;
     }
 }
 

@@ -16,6 +16,7 @@
     width: 100%;
     background-color: var(--theme-color);
     box-shadow: 0 0 5px grey;
+    display: inline-block;
 }
 
 .a1{
@@ -37,10 +38,11 @@
 }
 
 .a2{
-    position: relative;
-    width: 70%;
+    position: absolute;
+    width: 78%;
     /*border: 2px solid blueviolet;*/
     display: inline-block;
+    margin-top: 15px;
 }
 
 .dul{
@@ -48,20 +50,32 @@
     font-weight: bold;
 }
 
-.par{
-    margin-top: 20px;
-    margin-bottom: 35px;
+.dul button {
+    margin-left: 0;
 }
 
-.a2 a {
+.par{
+    margin-top: 20px;
+}
+
+.a3 {
+    width: 78%;
+    position: relative;
+    display: inline-block;
+    /*border: 1px solid lightseagreen;*/
+}
+
+.a3 a {
+    width: 100%;
+    position: absolute;
     text-decoration: none;
     color: #fff;
     font-weight: bold;
     text-align: center;
-    display: block;
     padding: 10px;
     border-radius: 10px;
     background-color: #2196F3;
+    bottom: 15px;
   }
 
 .b{

@@ -1,55 +1,123 @@
-const BASE_PATH = require("../../../../BasePath");
-const Routes = require(`${BASE_PATH}/src/client/dictionary/web/Routes`);
-const CollectionModel = require(`${BASE_PATH}/src/client/model/CollectionModel`);
-const References = require(`${BASE_PATH}/src/client/dictionary/database/References`);
-const { getDatabase, set, get, ref } = require("firebase/database");
-const SessionUtility = require(`${BASE_PATH}/src/client/utility/web/SessionUtility`);
-const SessionVariables = require(`${BASE_PATH}/src/client/dictionary/web/SessionVariables`);
+const CollectionModel = require("../../model/CollectionModel");
+const References = require("../../dictionary/database/References");
+const AuthenticationConfig = require("../../config/firebase/AuthenticationConfig");
+const {
+    getDatabase,
+    set,
+    get,
+    ref,
+    push,
+    child,
+    remove
+} = require("firebase/database");
 
 class CollectionController {
 
-    create(response, model) {
-        let saved = false;
+    async create(model) {
+        let result = false;
         if (model instanceof CollectionModel) {
-            let database = getDatabase();
-            set((database, References.COLLECTION), {
-                comic: model.getComic,
-                user: model.getUser
-            });
-            saved = true;
+            try {
+                model.uid = push(ref(getDatabase(), References.COLLECTION)).key;
+                await set(child(ref(getDatabase(), References.COLLECTION), model.uid), model.toJSON())
+                    .then(() => {
+                        result = true;
+                    });
+            } catch (error) {
+                console.log(error);
+            }
         }
-        if (saved) {
-            response.redirect(Routes.COLLECTION_BOUGHT_DUMMY);
-        }
+
+        return result;
     }
 
-    read(request, response, model) {
-        let found = false;
-        console.log("READING");
-        if (model instanceof CollectionModel) {
-            let database = getDatabase();
-            let reference = ref(database, References.COLLECTION);
-            console.log("GETTING REFERENCE");
-            get(reference).then((snapshot) => {
-                snapshot.forEach((dataSnapshot) => {
-                    let data = dataSnapshot.val().user;
-                    if (data === model.getUser) {
-                        request.session[SessionVariables.COLLECTION] = {};
-                        request.session[SessionVariables.COLLECTION][dataSnapshot.key] = dataSnapshot.val();
-                        found = true;
-                        console.log("FOUND");
-                        console.log(JSON.stringify(request.session[SessionVariables.COLLECTION]));
+    async read(uid) {
+        let result;
+        let snapshot;
+        try {
+            snapshot = await get(ref(getDatabase(), References.COLLECTION));
+        } catch (error) {
+            console.log(error);
+        } finally {
+            if (snapshot !== undefined && snapshot.exists()) {
+                if (uid === undefined) {
+                    result = [];
+                }
+                let debug = 0;
+                snapshot.forEach((data) => {
+                    if (data.exists()) {
+                        if (uid !== undefined) { // read specific collection
+                            if (data.val().user === AuthenticationConfig.getCurrentUser().uid && data.val().uid === uid) {
+                                result = data.val();
+                            }
+                        } else { // read all
+                            if (data.val().user === AuthenticationConfig.getCurrentUser().uid) {
+                                result.push(data.val());
+                            }
+                        }
                     }
                 });
+            }
+        }
 
-                console.log("rendering");
-                response.render("collection/comic_collection", {
-                    layout: "layout/main",
-                    css_file: "semua",
-                    page_title: "My Collection"
+        return result;
+    }
+
+    async readByTitle(title) {
+        let result;
+        let snapshot;
+        try {
+            snapshot = await get(ref(getDatabase(), References.COLLECTION));
+        } catch (error) {
+            console.log(error);
+        } finally {
+            if (snapshot !== undefined && snapshot.exists()) {
+                snapshot.forEach((data) => {
+                    if (data.exists()) {
+                        if (data.val().user === AuthenticationConfig.getCurrentUser().uid && data.val().title === title) {
+                            result = data.val();
+                        }
+                    }
                 });
-            });
-        };
+            }
+        }
+
+        return result;
+    }
+
+    async readByEndpoint(endpoint) {
+        let result;
+        let snapshot;
+        try {
+            snapshot = await get(ref(getDatabase(), References.COLLECTION));
+        } catch (error) {
+            console.log(error);
+        } finally {
+            if (snapshot !== undefined && snapshot.exists()) {
+                snapshot.forEach((data) => {
+                    if (data.exists()) {
+                        if (data.val().user === AuthenticationConfig.getCurrentUser().uid && data.val().endpoint === endpoint) {
+                            result = data.val();
+                        }
+                    }
+                });
+            }
+        }
+
+        return result;
+    }
+
+    async delete(uid) {
+        let result = false;
+        try {
+            await remove(child(ref(getDatabase(), References.COLLECTION), uid))
+                .then(() => {
+                    result = true;
+                });
+        } catch (error) {
+            console.log(error);
+        }
+
+        return result;
     }
 }
 

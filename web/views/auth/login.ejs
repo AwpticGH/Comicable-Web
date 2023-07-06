@@ -1,11 +1,11 @@
 <!-- modal -->
-<div class="content2">
+<div class="modal-validation">
     <div class="header2">
-        <!-- <p>Data Tersimpan</p> -->
-        <label for="click" class="fas fa-times" onclick="closemasuk();"></label>
+        <i class="fa fa-times" onclick="closemasuk()"></i>
     </div>
-    <label id="kedua" for="click" class="fas fa-times"></label>
-    <p> input masih ada yang kosong nih, masukan dulu ya.</p>
+    <div class="message-container">
+        <p>Input Masih Ada Yang Kosong Nih, Masukin Dulu Ya</p>
+    </div>
     <div class="line"></div>
     <label for="click" class="close-btn2" onclick="closemasuk();">Close</label>
 </div>
@@ -14,9 +14,16 @@
 
 
 <div class="konten masuk">
-    <form id="loginForm" action="<%= Routes.LOGIN %>" method="post">
+    <form id="login-form" action="<%= Routes.LOGIN %>" method="post">
         <h1>MASUK</h1>
-        <input type="email" name="<%= WebVariables.EMAIL %>" id="<%= WebVariables.EMAIL %>" placeholder="Email"><br>
+        <%
+        let inputEmail;
+        if (request.session[SessionVariables.INPUT_EMAIL] !== undefined) {
+            inputEmail = request.session[SessionVariables.INPUT_EMAIL];
+            request.session[SessionVariables.INPUT_EMAIL] = undefined;
+        }
+        %>
+        <input type="email" name="<%= WebVariables.EMAIL %>" id="<%= WebVariables.EMAIL %>" placeholder="Email" value="<%= inputEmail !== undefined ? inputEmail : "" %>"><br>
         <input type="password" name="<%= WebVariables.PASSWORD %>" id="<%= WebVariables.PASSWORD %>" placeholder="Kata sandi" autocomplete="true"><br>
         <button type="submit">Masuk</button> <br>
         <a href="<%= Routes.REGISTER_1 %>"><u>Belum punya akun?</u></a>

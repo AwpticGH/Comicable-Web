@@ -50,20 +50,53 @@ body{
     margin-top: 5px;
     display: block;
     width: 200px;
-    background-color: none;
     border: none;
     height: 25px;
 }
 
 .kontenn{
+    margin-top: 3rem;
     width: 100%;
-    position: relative;
     text-align: center;
-    margin: 0;
+}
+
+.kontenn .chapter-navigation {
+    width: 50%;
+    height: 40px;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-left: auto;
+    position: relative;
+    background-color: var(--comicable);
+}
+
+.kontenn .chapter-navigation-top {
+    margin-top: 75px;
+}
+
+.kontenn .chapter-navigation-bottom {
+    margin-top: -5px;
+    margin-bottom: 50px;
+}
+
+.kontenn .chapter-navigation * {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.kontenn .chapter-navigation h3 {
+    width: 30%;
+}
+
+.kontenn .chapter-navigation a {
+    width: 30%;
+    text-align: center;
+    text-decoration: none;
+    color: black;
 }
 
 .kontenn > img{
-    width: 65%;
+    width: 50%;
     position: relative;
     margin: 0;
     padding: 0;

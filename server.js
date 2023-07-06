@@ -1,28 +1,17 @@
 // Client
-const AuthFlag = require("./src/client/flag/AuthFlag");
-const WebRoutes = require("./src/client/dictionary/web/Routes");
-const WebVariables = require("./src/client/dictionary/web/WebVariables");
-const SessionVariables = require("./src/client/dictionary/web/SessionVariables");
-const Routes = require("./src/client/dictionary/web/Routes")
-const FirebaseFlag = require("./src/client/flag/FirebaseFlag");
-const FirebaseConfig = require("./src/client/config/firebase/FirebaseConfig");
-const AuthModel = require("./src/client/model/AuthModel");
-const CollectionModel = require("./src/client/model/CollectionModel");
-const AuthController = require("./src/client/controller/users/DatabaseController");
 const StringGenerator = require("./src/client/helper/generator/StringGenerator");
-const UsersReference = require("./src/client/dictionary/database/reference/Users");
-const CollectionController = require("./src/client/controller/collections/CollectionController");
-const AuthenticationFlag = require("./src/client/flag/AuthFlag");
-const AuthenticationConfig = require("./src/client/config/firebase/AuthenticationConfig");
 // Router
-const ClientRouter = require("./src/client/router/ComicRouter");
+const ComicRouter = require("./src/client/router/ComicRouter");
 const AuthenticationRouter = require("./src/client/router/AuthenticationRouter");
 const MiscRouter = require("./src/client/router/MiscRouter");
+// Middleware
+const WebMiddleware = require("./src/client/middleware/WebMiddleware");
 
 // Api
 const ApiRouter = require("./src/api/router/ApiRouter");
 const cors = require("cors");
 
+// Third-Party
 const express = require("express");
 const path = require("path");
 const ejsLayouts = require("express-ejs-layouts");
@@ -61,27 +50,14 @@ app.use(
 );
 
 app.use(express.urlencoded({ extended: false }));
-app.use((request, response, next) => {
-    if (!FirebaseFlag.isInitialized()) {
-        FirebaseConfig.init();
-        console.log("Firebase Initialized");
-    }
-    if (AuthenticationFlag.isAuthenticated()) {
-        response.locals.AuthenticationConfig = AuthenticationConfig;
-    }
-    response.locals.request = request;
-    response.locals.AuthFlag = AuthFlag;
-    response.locals.WebVariables = WebVariables;
-    response.locals.SessionVariables = SessionVariables;
-    response.locals.Routes = Routes;
-    response.locals.UsersReference = UsersReference;
-    next();
-});
-
+// Api 3rd Party
 app.use(cors());
+// Api
 app.use(ApiRouter);
-app.use(ClientRouter);
+
+app.use(WebMiddleware);
 app.use(AuthenticationRouter);
+app.use(ComicRouter);
 app.use(MiscRouter);
 
 app.use(express.static(path.join(__dirname, "/web/public")));

@@ -1,21 +1,18 @@
 class WebVariables {
-    static #ALERT = "my-alert";
     static #EMAIL = "user-email";
     static #PASSWORD = "user-password";
     static #PASSWORD_CONFIRMATION = "user-password-confirmation";
     static #FIRST_NAME = "user-first-name";
     static #LAST_NAME = "user-last-name";
-    static #PHONE_NUMBER = "user-phone-number";
-    static #ADDRESS = "user-address";
     static #IMAGE = "user-image";
-    static #DATE_OF_BIRTH = "user-date-of-birth";
     static #UID = "user-uid";
     static #SEARCH_QUERY = "query";
     static #SEARCH_PAGE ="page";
 
-    static get ALERT() {
-        return this.#ALERT;
-    }
+    // comic crud
+    static _COLLECTION_UID = "collection-uid";
+    static _COLLECTION_TITLE = "collection-title";
+    static _COLLECTION_ENDPOINT = "collection-endpoint";
 
     static get EMAIL() {
         return this.#EMAIL;
@@ -37,20 +34,8 @@ class WebVariables {
         return this.#LAST_NAME;
     }
 
-    static get PHONE_NUMBER() {
-        return this.#PHONE_NUMBER;
-    }
-
-    static get ADDRESS() {
-        return this.#ADDRESS;
-    }
-
     static get IMAGE() {
         return this.#IMAGE;
-    }
-
-    static get DATE_OF_BIRTH() {
-        return this.#DATE_OF_BIRTH;
     }
 
     static get UID() {
@@ -63,6 +48,18 @@ class WebVariables {
 
     static get SEARCH_PAGE() {
         return this.#SEARCH_PAGE;
+    }
+
+    static get COLLECTION_UID() {
+        return this._COLLECTION_UID;
+    }
+
+    static get COLLECTION_TITLE() {
+        return this._COLLECTION_TITLE;
+    }
+
+    static get COLLECTION_ENDPOINT() {
+        return this._COLLECTION_ENDPOINT;
     }
 }
 

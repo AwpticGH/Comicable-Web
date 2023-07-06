@@ -12,6 +12,16 @@
             <div class="a2">
                 <div class="dul">
                     <p id="comic-title"><%= api_data.detail.title %></p>
+                    <form action="<%= collection !== undefined ? Routes.COLLECTION_DELETE : Routes.COLLECTION_CREATE %>" method="post">
+                        <%
+                        if (collection !== undefined) {
+                        %>
+                            <input type="hidden" name="<%= WebVariables.COLLECTION_UID %>" value="<%= collection.uid %>"/>
+                        <% } %>
+                        <input type="hidden" name="<%= WebVariables.COLLECTION_TITLE %>" value="<%= api_data.detail.title %>"/>
+                        <input type="hidden" name="<%= WebVariables.COLLECTION_ENDPOINT %>" value="<%= request.url %>"/>
+                        <button type="submit"><%= collection !== undefined ? "Hapus Dari Koleksi" : "Tambah Ke Koleksi" %></button>
+                    </form>
                 </div>
                 <!-- gawe judul komik dll -->
                 <div class="par">
@@ -24,9 +34,15 @@
                     <p><%= api_data.detail.release %></p>
                     <p><%= api_data.detail.status %></p>
                 </div>
-                <a class="btn-beli" href="#">
-                    Lanjut Membaca
-                </a>
+            </div>
+            <div class="a3">
+                <%
+                if (checkpoint !== undefined) {
+                %>
+                    <a href="<%= checkpoint.endpoint %>">
+                        Lanjut Membaca
+                    </a>
+                <% } %>
             </div>
         </div>
 

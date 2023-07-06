@@ -25,50 +25,30 @@
 
 #### CRUD
 1. create
-   - [] collections
+   - [x] collections
    - [x] users
-   - [] checkpoints
+   - [x] checkpoints
 2. read
-   - [] collections
+   - [x] collections
    - [x] users
-   - [] checkpoints
+   - [x] checkpoints
 3. update
-   - [] users
-   - [] checkpoints
+   - [x] users
+   - [x] checkpoints
 4. delete
-   - [] collections
-   - [] checkpoints (kalo delete collection nya)
+   - [x] collections
+   - [x] checkpoints (kalo delete collection nya)
  
 ## Version 1.1
 ### Manga API
 Provides unofficial public API \
 from https://shinigami.id \
-originally from https://github.com/AzwarKusumah/ryukoapi-shinigami \
-with restructured code architecture by AwpticGH
+originally developed by https://github.com/AzwarKusumah/ryukoapi-shinigami \
+with restructured code architecture by https://github.com/AwpticGH
 
 ## Version 2.0
 ### Web
 Integration of the API into the website with crud features
-
-## To Do
-### Frontend
-- [x] Restructure folder (rafi)
-- [x] Konversi file ke ejs (rafi/praba)
-- [x] Bikin layout components dan main layout (rafi/praba)
-- [x] Remove unnecessary features in web for crud, see tables in database section for reference (rafi)
-
-### Backend
-- [x] Nyari restful api (rafi)
-- [x] Nyari library untuk rest api (rafi)
-- [x] Implementasi api nya (rafi)
-- [x] Bikin config (praba)
-- [x] Bikin controller (praba)
-- [x] Bikin model (praba)
-- [] Bikin middleware (rafi)
-- [x] Bikin router (rafi)
-- [x] Bikin dictionary/WebVariable (rafi)
-- [x] Bikin dictionary/References (rafi)
-- [x] Bikin flag (rafi)
 
 ## Penjelasan
 ### config
