@@ -8,37 +8,36 @@
 1. collections
    - uid
    - title: comic title (from api)
+   - endpoint
    - user: users.uid
 2. users
    - uid
-   - address
    - date_of_birth
    - email
    - first_name
    - last_name
    - password
-   - phone_number
-   - verified (0 or 1)
+   - verified (true or false)
 3. checkpoints
    - uid
    - collection: collection.uid
-   - chapter
+   - endpoint
 
 #### CRUD
 1. create
-   - collections
-   - users
-   - checkpoints
+   - [] collections
+   - [x] users
+   - [] checkpoints
 2. read
-   - collections
-   - users
-   - checkpoints
+   - [] collections
+   - [x] users
+   - [] checkpoints
 3. update
-   - users
-   - checkpoints
+   - [] users
+   - [] checkpoints
 4. delete
-   - collections
-   - checkpoints (kalo delete collection nya)
+   - [] collections
+   - [] checkpoints (kalo delete collection nya)
  
 ## Version 1.1
 ### Manga API
@@ -54,22 +53,22 @@ Integration of the API into the website with crud features
 ## To Do
 ### Frontend
 - [x] Restructure folder (rafi)
-- [] Konversi file ke ejs (rafi/praba)
+- [x] Konversi file ke ejs (rafi/praba)
 - [x] Bikin layout components dan main layout (rafi/praba)
-- [] Remove unnecessary features in web for crud, see tables in database section for reference (rafi)
+- [x] Remove unnecessary features in web for crud, see tables in database section for reference (rafi)
 
 ### Backend
-- [] Nyari restful api (rafi)
-- [] Nyari library untuk rest api (rafi)
-- [] Implementasi api nya (rafi)
-- [] Bikin config (praba)
-- [] Bikin controller (praba)
-- [] Bikin model (praba)
+- [x] Nyari restful api (rafi)
+- [x] Nyari library untuk rest api (rafi)
+- [x] Implementasi api nya (rafi)
+- [x] Bikin config (praba)
+- [x] Bikin controller (praba)
+- [x] Bikin model (praba)
 - [] Bikin middleware (rafi)
-- [] Bikin router (rafi)
-- [] Bikin dictionary/WebVariable (rafi)
-- [] Bikin dictionary/References (rafi)
-- [] Bikin flag (rafi)
+- [x] Bikin router (rafi)
+- [x] Bikin dictionary/WebVariable (rafi)
+- [x] Bikin dictionary/References (rafi)
+- [x] Bikin flag (rafi)
 
 ## Penjelasan
 ### config
