@@ -25,7 +25,7 @@ class ChapterController {
                 responseModel.status = 200;
 
                 let dataModel = new DataModel();
-                dataModel.title = $(".row").find("#chapter-heading").text();
+                dataModel.title = $(".row").find("#chapter-heading").text().split("- ")[1];
                 dataModel.images;
 
                 let image;
