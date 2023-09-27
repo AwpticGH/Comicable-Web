@@ -2,10 +2,10 @@ const AuthModel = require("../../model/AuthModel");
 const References = require("../../dictionary/database/References");
 const AuthenticationConfig = require("../../config/firebase/AuthenticationConfig");
 const {
-    getDatabase, ref,
+    getDatabase,
+    ref,
     child,
     get,
-    push,
     set,
     update
 } = require("firebase/database");
